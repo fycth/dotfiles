@@ -22,6 +22,17 @@
 
 (add-to-list 'auto-mode-alist '("[.]dtl" . html-mode))
 
+;; option-ip/down - page up / page down
+(setq mac-option-modifier 'alt)
+(global-set-key (kbd "A-<up>")
+(lambda () (interactive)
+      (condition-case nil (scroll-down)
+              (beginning-of-buffer (goto-char (point-min))))))
+(global-set-key (kbd "A-<down>")
+(lambda () (interactive)
+      (condition-case nil (scroll-up)
+              (end-of-buffer (goto-char (point-max))))))
+
 ;; recent opened files
 (require 'recentf)
 (recentf-mode 1)
