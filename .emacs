@@ -11,6 +11,15 @@
 (load "~/.emacs.d/fonts.el")
 (load "~/.emacs.d/defuns.el")
 
+;; for haskell
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+             (package-initialize)
+(add-to-list 'auto-mode-alist '("[.]hs" . haskell-mode))
+(custom-set-variables
+ '(haskell-mode-hook '(turn-on-haskell-indentation)))
+
 ;; for ocaml
 (add-to-list 'load-path "~/.emacs.d/deps/tuareg-2.0.6")
 (load "~/.emacs.d/deps/tuareg-2.0.6/tuareg.el")
