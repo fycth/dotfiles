@@ -5,3 +5,5 @@
 .emacs.d/auto-save-list/
 .emacs.d/session.*
 .emacs.d/elpa/
+.emacs.d/*.dat
+.emacs.d/*.eld
