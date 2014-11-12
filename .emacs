@@ -1,63 +1,66 @@
 
-(load "~/.emacs.d/tabs.el")
-(load "~/.emacs.d/flymake.el")
-(load "~/.emacs.d/utf-8.el")
-(load "~/.emacs.d/recentf.el")
-(load "~/.emacs.d/markdown-mode.el")
-(load "~/.emacs.d/mac.el")
-(load "~/.emacs.d/iswitchb.el")
-(load "~/.emacs.d/ido.el")
-(load "~/.emacs.d/hl-line.el")
-(load "~/.emacs.d/fonts.el")
-(load "~/.emacs.d/defuns.el")
+(require 'cl)
 
-;; for haskell
-(require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-             (package-initialize)
-(add-to-list 'auto-mode-alist '("[.]hs" . haskell-mode))
-(custom-set-variables
- '(haskell-mode-hook '(turn-on-haskell-indentation)))
+;; declare package sources
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(package-initialize) ;; You might already have this line
 
-;; for ocaml
-(add-to-list 'load-path "~/.emacs.d/deps/tuareg-2.0.6")
-(load "~/.emacs.d/deps/tuareg-2.0.6/tuareg.el")
-(add-to-list 'auto-mode-alist '("[.]ml" . tuareg-mode))
+;; define a list of packages to install via package manager
+(defvar my-packages
+    '(projectile
+      helm
+      helm-projectile
+      recentf-ext
+      hl-line+
+      erlang
+      )
+      "A list of packages to ensure are installed at launch.")
 
-(add-to-list 'load-path "~/.emacs.d/deps/tramp")
-(require 'tramp)
-(setq tramp-default-method "scp")
+;; is a package installed
+(defun my-packages-installed-p ()
+    (loop for p in my-packages
+	          when (not (package-installed-p p)) do (return nil)
+		          finally (return t)))
+
+;; go through the packages list and install all necessary
+(unless (my-packages-installed-p)
+    ;; check for new packages (package versions)
+    (message "%s" "Emacs is now refreshing its package database...")
+    (package-refresh-contents)
+    (message "%s" " done.")
+    ;; install the missing packages
+    (dolist (p my-packages)
+         (when (not (package-installed-p p))
+           (message "installing package %s\n" p)
+           (package-install p))))
+
+(provide 'my-packages)
+
+(setq mac-option-modifier 'alt)
+
+(global-hl-line-mode nil)
+(toggle-hl-line-when-idle)
+
+(projectile-global-mode)
+
+(add-hook 'after-init-hook 'my-after-init-hook)
+(defun my-after-init-hook ()
+    (require 'erlang-start))
 
 (add-to-list 'auto-mode-alist '("[.]dtl" . html-mode))
 
-;; option-ip/down - page up / page down
-(setq mac-option-modifier 'alt)
-(global-set-key (kbd "A-<up>")
-(lambda () (interactive)
-      (condition-case nil (scroll-down)
-              (beginning-of-buffer (goto-char (point-min))))))
-(global-set-key (kbd "A-<down>")
-(lambda () (interactive)
-      (condition-case nil (scroll-up)
-              (end-of-buffer (goto-char (point-max))))))
-
 ;; recent opened files
-(require 'recentf)
 (recentf-mode 1)
-(global-set-key "\C-xf" 'recentf-open-files)
-
-;; Goto-line short-cut key
-(global-set-key "\C-l" 'goto-line)
 
 (display-time-mode 1)
 ;;(display-battery-mode 1)
 
 ;;small fringes
 (set-fringe-mode '(1 . 1))
-
-;;(when (fboundp 'toggle-scroll-bar)
-;; (toggle-scroll-bar -1))
 
 ;; use command as the meta key
 (setq ns-command-modifier (quote meta))
@@ -88,9 +91,6 @@
 (setq truncate-lines t)
 (setq truncate-partial-width-windows nil)
 
-;;for emacs client
-;;(server-start)
-
 (global-set-key (kbd "M-3") 'split-window-horizontally)
 (global-set-key (kbd "M-2") 'split-window-vertically)
 (global-set-key (kbd "M-1") 'delete-other-windows)
@@ -102,9 +102,6 @@
 (global-unset-key (kbd "C-x 1")) ; was delete other windows
 (global-unset-key (kbd "C-x 0")) ; was delete-window
 (global-unset-key (kbd "C-x o")) ; was other-window
-
-;; window navigation
-(windmove-default-keybindings 'meta)
 
 ;; mac os conventions
 (global-set-key (kbd "M-a") 'mark-whole-buffer)
@@ -143,57 +140,16 @@
 
 ;; set 'solarized dark' theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
-(load-theme 'solarized-dark t)
+;;(load-theme 'solarized-dark t)
 
-;; maximize window
-;(add-to-list 'load-path "~/.emacs.d/deps/maxframe")
-;(require 'maxframe)
-;(add-hook 'window-setup-hook 'maximize-frame t)
-
-;;
-(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.7/emacs")
+;; Erlanh stuff
+(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.7/emacs")
 (require 'erlang-start)
-
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
-
 (setq erlang-root-dir "/usr/local/lib/erlang")
 (add-to-list 'exec-path "/usr/local/lib/erlang/bin")
 (setq erlang-man-root-dir "/usr/local/lib/erlang/man")
-
-(add-to-list 'load-path "~/.emacs.d/deps/distel/elisp")
-(require 'distel)
-(distel-setup)
-
-;; A number of the erlang-extended-mode key bindings are useful in the shell too
-
-(defconst distel-shell-keys
-  '(("\C-\M-i"   erl-complete)
-    ("\M-?"      erl-complete)
-    ("\M-."      erl-find-source-under-point)
-    ("\M-,"      erl-find-source-unwind)
-    ("\M-*"      erl-find-source-unwind)
-    )
-  "Additional keys to bind when in Erlang shell.")
-
-(add-hook 'erlang-shell-mode-hook
-                                        (lambda ()
-                                                ;; add some Distel bindings to the Erlang shell
-                                                (dolist (spec distel-shell-keys)
-                                                        (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
-
-(require 'flymake)
-
-;; switch on flymake global
-(add-hook 'find-file-hook 'flymake-find-file-hook)
-
-(defun flymake-xml-init ())
-
-;; switch on flymake for erl only
-;;(defun my-erlang-mode-hook ()
-;;        (flymake-mode 1))
-;;(add-hook 'erlang-mode-hook 'my-erlang-mode-hook)
-
 (add-hook 'erlang-mode-hook
              (lambda ()
             ;; when starting an Erlang shell in Emacs, the node name
@@ -213,3 +169,59 @@
                                                           plain-tex-mode))
                      (let ((mark-even-if-inactive transient-mark-mode))
                        (indent-region (region-beginning) (region-end) nil))))))
+
+;; if we're inside of a projectile project, open file in projectile mode
+;; otherwise, open file in helm mode
+(defun sr-open-file()
+  "Open file using projectile+helm or helm-for-files"
+  (interactive)
+  (if (projectile-project-p)
+    (helm-projectile)
+    (helm-for-files)))
+
+(global-set-key (kbd "M-o") 'sr-open-file)
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+;; Page down/up move the point, not the screen.
+;; In practice, this means that they can move the
+;; point to the beginning or end of the buffer.
+(global-set-key (kbd "M-<down>")
+		(lambda () (interactive)
+		  (condition-case nil (scroll-up)
+				  (end-of-buffer (goto-char (point-max))))))
+
+(global-set-key (kbd "M-<up>")
+		(lambda () (interactive)
+		  (condition-case nil (scroll-down)
+				  (beginning-of-buffer (goto-char (point-min))))))
+
+(global-set-key (kbd "M-<left>") 'beginning-of-line)                                 
+(global-set-key (kbd "M-<right>") 'end-of-line)
+
+(global-set-key (kbd "A-<down>") 'windmove-down)
+(global-set-key (kbd "A-<up>") 'windmove-up)
+(global-set-key (kbd "A-<left>") 'windmove-left)
+(global-set-key (kbd "A-<right>") 'windmove-right)
+
+(global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-Z") 'redo)
+
+;;(global-set-key (kbd "M-SPC") 'set-mark-command)
+
+(require 'un-define "un-define" t)
+
+;; work with utf-8
+(set-buffer-file-coding-system 'utf-8 'utf-8-unix)
+(set-default buffer-file-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8-unix)
+(prefer-coding-system 'utf-8-unix)
+(set-default default-buffer-file-coding-system 'utf-8-unix)
+
+;; for Mac
+;; Hide the tool bar
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode 0))
+;; Slow down the mouse wheel acceleration
+(when (boundp 'mouse-wheel-scroll-amount)
+  (setq mouse-wheel-scroll-amount '(0.01)))
+
