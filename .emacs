@@ -17,6 +17,11 @@
       recentf-ext
       hl-line+
       erlang
+      magit
+      fic-mode
+      yasnippet
+      js2-mode
+      header2
       )
       "A list of packages to ensure are installed at launch.")
 
@@ -39,6 +44,23 @@
            (package-install p))))
 
 (provide 'my-packages)
+
+(setq backup-directory-alist `((".*" . ,"~/.emacs-saves")))
+(setq auto-save-file-name-transforms `((".*" ,"~/.emacs-saves" t)))
+(setq backup-by-copying t)
+(setq delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t)
+
+(setq user-full-name "Andrii Sergiienko"
+      user-mail-address "andrey.sergienko@gmail.com")
+      
+;; turn on highlighting TODO, FIXME, BUG
+(add-hook 'prog-mode-hook 'turn-on-fic-mode)
+
+;; turn on yasnippet globally
+(yas-global-mode 1)
 
 (setq mac-option-modifier 'alt)
 
@@ -119,7 +141,6 @@
 (global-set-key (kbd "M-k") 'kill-this-buffer)
 
 ;; indential and alignment
-(global-set-key [(f8)] 'indent-region)
 (global-set-key [(control f8)] 'align)
 (global-set-key [(shift f8)] 'align-current)
 (global-set-key [(meta f8)] 'align-regexp)
@@ -225,3 +246,11 @@
 (when (boundp 'mouse-wheel-scroll-amount)
   (setq mouse-wheel-scroll-amount '(0.01)))
 
+;; disable auto-save feature
+(setq auto-save-default nil)
+
+(defun sync-remote()
+  "Does rsync over SSH with remote server"
+  (interactive)
+  (projectile-run-shell-command-in-root "sh sync.sh"))
+(global-set-key [(f2)] 'sync-remote)
