@@ -22,6 +22,7 @@
       yasnippet
       js2-mode
       header2
+      haskell-mode
       )
       "A list of packages to ensure are installed at launch.")
 
@@ -163,7 +164,10 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
 ;;(load-theme 'solarized-dark t)
 
-;; Erlanh stuff
+;;
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+
+;; Erlang stuff
 (add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.7/emacs")
 (require 'erlang-start)
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
