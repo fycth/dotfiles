@@ -20,9 +20,10 @@
       magit
       fic-mode
       yasnippet
-      js2-mode
+      web-mode
       header2
       haskell-mode
+      wakatime-mode
       )
       "A list of packages to ensure are installed at launch.")
 
@@ -56,7 +57,11 @@
 
 (setq user-full-name "Andrii Sergiienko"
       user-mail-address "andrey.sergienko@gmail.com")
-      
+
+;; turn ON web-mode for HTML and JS files
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
+
 ;; turn on highlighting TODO, FIXME, BUG
 (add-hook 'prog-mode-hook 'turn-on-fic-mode)
 
@@ -258,3 +263,16 @@
   (interactive)
   (projectile-run-shell-command-in-root "sh sync.sh"))
 (global-set-key [(f2)] 'sync-remote)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(wakatime-api-key "60f0cff9-9e10-4dd5-9f2f-5ee6ec4c9276")
+ '(wakatime-cli-path "/usr/local/bin/wakatime"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
