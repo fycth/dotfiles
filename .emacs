@@ -165,6 +165,9 @@
 
 (global-set-key (kbd "TAB") 'smart-tab)
 
+;; indent with spaces, not with tabs
+(setq-default indent-tabs-mode nil)
+
 ;; set 'solarized dark' theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
 ;;(load-theme 'solarized-dark t)
