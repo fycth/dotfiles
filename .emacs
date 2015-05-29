@@ -24,6 +24,7 @@
       header2
       haskell-mode
       wakatime-mode
+      dash-at-point
       )
       "A list of packages to ensure are installed at launch.")
 
