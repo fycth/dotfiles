@@ -135,29 +135,11 @@
 ;; mac os conventions
 (global-set-key (kbd "M-a") 'mark-whole-buffer)
 
-;; find matched parens
-(global-set-key (kbd "C-'") 'match-paren)
-
-;; easy inserts
-(global-set-key (kbd "C-.") 'insert-arrow)
-
 ;; ibuffer > list-buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; easier buffer killing
 (global-set-key (kbd "M-k") 'kill-this-buffer)
-
-;; indential and alignment
-(global-set-key [(control f8)] 'align)
-(global-set-key [(shift f8)] 'align-current)
-(global-set-key [(meta f8)] 'align-regexp)
-
-;; find stuff
-(global-set-key [(f2)] 'ack)
-(global-set-key [(control f2)] 'ack-same)
-(global-set-key [(control meta f2)] 'ack-default-directory)
-(global-set-key [(meta f2)] 'find-name-dired)
-(global-set-key [(shift f2)] 'occur)
 
 ;; refresh like
 (global-set-key [(f5)] 'revert-buffer)
@@ -216,6 +198,10 @@
 (global-set-key (kbd "M-o") 'sr-open-file)
 (global-set-key (kbd "M-x") 'helm-M-x)
 
+;; Open Dash docs at the cursor point
+(global-set-key (kbd "C-x d") 'dash-at-point)
+
+
 ;; Page down/up move the point, not the screen.
 ;; In practice, this means that they can move the
 ;; point to the beginning or end of the buffer.
@@ -236,11 +222,6 @@
 (global-set-key (kbd "A-<up>") 'windmove-up)
 (global-set-key (kbd "A-<left>") 'windmove-left)
 (global-set-key (kbd "A-<right>") 'windmove-right)
-
-(global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-Z") 'redo)
-
-;;(global-set-key (kbd "M-SPC") 'set-mark-command)
 
 (require 'un-define "un-define" t)
 
