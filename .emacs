@@ -201,6 +201,8 @@
 ;; Open Dash docs at the cursor point
 (global-set-key (kbd "C-x d") 'dash-at-point)
 
+;; Wakatime mode
+(global-set-key (kbd "C-x w") 'global-wakatime-mode)
 
 ;; Page down/up move the point, not the screen.
 ;; In practice, this means that they can move the
