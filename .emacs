@@ -263,3 +263,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; start emacs on a remote machine: emacsclient -c -a ""
+;; close such emacs process: C-x c
+;; Kill-server
+(defun my-kill-emacs ()
+(interactive)
+(save-some-buffers)
+(desktop-save-in-desktop-dir)
+(kill-emacs))
+(global-set-key (kbd "C-x c") 'my-kill-emacs)
