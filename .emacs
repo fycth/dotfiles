@@ -21,7 +21,6 @@
       fic-mode
       yasnippet
       web-mode
-      header2
       haskell-mode
       wakatime-mode
       dash-at-point
@@ -48,13 +47,18 @@
 
 (provide 'my-packages)
 
-(setq backup-directory-alist `((".*" . ,"~/.emacs-saves")))
-(setq auto-save-file-name-transforms `((".*" ,"~/.emacs-saves" t)))
+(setq backup-directory-alist `((".*" . ,"~/.emacs.d/.emacs-saves")))
+(setq auto-save-file-name-transforms `((".*" ,"~/.emacs.d/.emacs-saves" t)))
 (setq backup-by-copying t)
 (setq delete-old-versions t
  kept-new-versions 6
  kept-old-versions 2
  version-control t)
+
+;AutoInsert
+(setq auto-insert-directory "~/dotfiles/auto-inserts")
+(auto-insert-mode 't)
+(setq auto-insert-alist '((erlang-mode . "header.erl")))
 
 (setq user-full-name "Andrii Sergiienko"
       user-mail-address "andrey.sergienko@gmail.com")
