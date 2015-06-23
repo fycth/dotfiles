@@ -55,6 +55,10 @@
  kept-old-versions 2
  version-control t)
 
+;;
+;;(add-to-list 'load-path "~/.emacs.d/mytracker")
+;;(load "mytracker.el")
+
 ;AutoInsert
 (setq auto-insert-directory "~/dotfiles/auto-inserts")
 (auto-insert-mode 't)
@@ -72,6 +76,9 @@
 
 ;; turn on yasnippet globally
 (yas-global-mode 1)
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
 
 (setq mac-option-modifier 'alt)
 
@@ -142,6 +149,9 @@
 ;; ibuffer > list-buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+;; magit main interface
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ;; easier buffer killing
 (global-set-key (kbd "M-k") 'kill-this-buffer)
 
@@ -149,8 +159,6 @@
 (global-set-key [(f5)] 'revert-buffer)
 (global-set-key [(control f5)] 'toggle-read-only)
 (global-set-key [(shift f5)] 'ecb-redraw-layout)
-
-(global-set-key (kbd "TAB") 'smart-tab)
 
 ;; indent with spaces, not with tabs
 (setq-default indent-tabs-mode nil)
