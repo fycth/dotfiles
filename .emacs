@@ -47,6 +47,8 @@
 
 (provide 'my-packages)
 
+(setenv "ESHELL" (expand-file-name "~/dotfiles/eshell"))
+
 (setq backup-directory-alist `((".*" . ,"~/.emacs.d/.emacs-saves")))
 (setq auto-save-file-name-transforms `((".*" ,"~/.emacs.d/.emacs-saves" t)))
 (setq backup-by-copying t)
