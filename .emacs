@@ -162,6 +162,7 @@
 
 ;; indent with spaces, not with tabs
 (setq-default indent-tabs-mode nil)
+(setq default-tab-width 4)
 
 ;; set 'solarized dark' theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
