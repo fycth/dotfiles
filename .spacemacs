@@ -7,11 +7,6 @@
 (setq user-full-name "Andrii Sergiienko"
       user-mail-address "andrey.sergienko@gmail.com")
 
-;;(setq-default dotspacemacs-configuration-layers '(osx))
-;;(setq-default dotspacemacs-configuration-layers '(erlang))
-;;(setq-default dotspacemacs-configuration-layers '(haskell))
-;;(setq-default dotspacemacs-configuration-layers '(javascript))
-
 ;; scrolling
 (global-set-key (kbd "<s-down>")
                 (lambda () (interactive)
@@ -71,7 +66,7 @@ values."
      ;; better-defaults
      emacs-lisp
      git
-     ;; markdown
+     markdown
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
