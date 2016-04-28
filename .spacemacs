@@ -24,6 +24,9 @@
 (global-set-key (kbd "s-2") 'split-window-vertically)
 (global-set-key (kbd "s-1") 'delete-other-windows)
 
+;; kill current buffer
+(global-set-key (kbd "s-k") 'kill-this-buffer)
+
 ;; moving between windows
 (global-set-key (kbd "<M-down>") 'windmove-down)
 (global-set-key (kbd "<M-up>") 'windmove-up)
@@ -80,6 +83,7 @@ values."
      javascript
      haskell
      html
+     elm
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -134,11 +138,17 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   ;; dotspacemacs-default-font '("Source Code Pro"
+   ;;                             :size 13
+   ;;                             :weight normal
+   ;;                             :width normal
+   ;;                             :powerline-scale 1.1)
+   dotspacemacs-default-font '("Fira Code"
                                :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
+
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -243,6 +253,7 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (mac-auto-operator-composition-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
