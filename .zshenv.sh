@@ -104,5 +104,5 @@ unset BROWSER
 
 export NODE_PATH='/usr/local/lib/node_modules'
 
-export PATH=$PATH:/usr/local/opt/subversion/bin:/usr/local/bin:/Users/andreysergienko/.local/bin:/Users/andreysergienko/.stack/programs/x86_64-osx/ghc-7.10.3/bin/
+export PATH=$PATH:/Users/andreysergienko/.cabal/bin:/Users/andreysergienko/anaconda/bin:/usr/local/opt/subversion/bin:/usr/local/bin:/Users/andreysergienko/.local/bin:/Users/andreysergienko/.stack/programs/x86_64-osx/ghc-7.10.3/bin/
 
