@@ -33,6 +33,17 @@
 (global-set-key (kbd "<M-left>") 'windmove-left)
 (global-set-key (kbd "<M-right>") 'windmove-right)
 
+;; NeoTree
+(global-set-key (kbd "s-t") 'neotree-find-project-root)
+(setq neo-smart-open t)
+(setq projectile-switch-project-action 'neotree-projectile-action)
+(add-hook 'neotree-mode-hook
+          (lambda ()
+            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+
 ;; Command-o opens helm file open dialog
 (defun sr-open-file()
   "Open file using projectile+helm or helm-for-files"
@@ -43,7 +54,7 @@
 (global-set-key (kbd "s-o") 'sr-open-file)
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-to-list 'exec-path "~/.local/bin/")
+(global-linum-mode)
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -70,7 +81,7 @@ values."
      ;; better-defaults
      emacs-lisp
      git
-     markdown
+     ;;markdown
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -254,6 +265,8 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (mac-auto-operator-composition-mode)
+  (add-to-list 'exec-path "~/.local/bin")
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
