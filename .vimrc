@@ -101,3 +101,8 @@ hi PMenu guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=28 term=none c
 " For global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
+let g:vim_annotations_offset = '/.liquid/'
+
+" Easy align interactive
+vnoremap <silent> <Enter> :EasyAlign<cr>
+
