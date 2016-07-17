@@ -21,6 +21,10 @@ prompt 'paulmillr'
 # = Aliases =
 # ==================================================================
 
+alias ruby=/usr/local/Cellar/ruby/2.3.1/bin/ruby
+alias vi=/usr/local/Cellar/vim/7.4.2033/bin/vim
+alias vim=/usr/local/Cellar/vim/7.4.2033/bin/vim
+
 alias -g f10='| head -n 10'
 alias -g l10='| tail -n 10'
 # Simple clear command.
