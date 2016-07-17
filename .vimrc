@@ -39,7 +39,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
@@ -106,3 +106,17 @@ let g:vim_annotations_offset = '/.liquid/'
 " Easy align interactive
 vnoremap <silent> <Enter> :EasyAlign<cr>
 
+" reformat ELM sources when saving
+let g:elm_format_autosave = 1
+" disable elm-vim default key bindings
+let g:elm_setup_keybindings = 0
+"
+let g:elm_syntastic_show_warnings = 1
+"
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+call neocomplete#util#set_default_dictionary(
+  \ 'g:neocomplete#sources#omni#input_patterns',
+  \ 'elm',
+  \ '\.')
