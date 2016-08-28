@@ -22,8 +22,9 @@ prompt 'paulmillr'
 # ==================================================================
 
 alias ruby=/usr/local/Cellar/ruby/2.3.1/bin/ruby
-alias vi=/usr/local/Cellar/vim/7.4.2210/bin/vim
-alias vim=/usr/local/Cellar/vim/7.4.2210/bin/vim
+alias vi=/usr/local/Cellar/vim/7.4.2235/bin/vim
+alias vim=/usr/local/Cellar/vim/7.4.2235/bin/vim
+alias sed=gsed
 
 alias -g f10='| head -n 10'
 alias -g l10='| tail -n 10'
