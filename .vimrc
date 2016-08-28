@@ -1,6 +1,7 @@
 syntax on
 filetype plugin indent on
 
+set backspace=2
 set hidden
 set nocompatible
 set number
@@ -87,11 +88,17 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 
+if executable("ag")
+  let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+endif
+let g:CtrlSpaceSearchTiming = 500
+
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
+
 hi CtrlSpaceSearch guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=236 term=bold cterm=bold
 hi CtrlSpaceSelected guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=17 term=bold cterm=bold
 hi CtrlSpaceNormal guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=28 term=bold cterm=bold
 hi CtrlSpaceStatus guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=31 term=bold cterm=bold
-
 
 "hi Search guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=236 term=none cterm=none
 hi PMenuSel guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=17 term=none cterm=none
