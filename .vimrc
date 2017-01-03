@@ -95,15 +95,19 @@ let g:CtrlSpaceSearchTiming = 500
 
 let g:CtrlSpaceSaveWorkspaceOnExit = 1
 
-hi CtrlSpaceSearch guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=236 term=bold cterm=bold
+hi CtrlSpaceSearch guifg=#eeeeee guibg=#303030 gui=none ctermfg=255 ctermbg=236 term=none cterm=none
 hi CtrlSpaceSelected guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=17 term=bold cterm=bold
-hi CtrlSpaceNormal guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=28 term=bold cterm=bold
-hi CtrlSpaceStatus guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=31 term=bold cterm=bold
+hi CtrlSpaceNormal guifg=#eeeeee guibg=#303030 gui=none ctermfg=255 ctermbg=28 term=none cterm=none
+hi CtrlSpaceStatus guifg=#eeeeee guibg=#303030 gui=none ctermfg=255 ctermbg=31 term=none cterm=none
 
-"hi Search guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=236 term=none cterm=none
+hi Search guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=236 term=none cterm=none
 hi PMenuSel guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=17 term=none cterm=none
 hi PMenu guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=28 term=none cterm=none
-"hi StatusLine guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=31 term=bold cterm=bold
+hi StatusLine guifg=#eeeeee guibg=#303030 gui=bold ctermfg=255 ctermbg=31 term=bold cterm=bold
+
+au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
+au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
+au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
 
 " For global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
