@@ -394,6 +394,8 @@ function preview() {
   open $1 -a 'Preview'
 }
 
+export HISTTIMEFORMAT="%d/%m/%y %T "
+
 # docker-osx-dev
 export DOCKER_HOST=tcp://192.168.99.100:2376
 export DOCKER_CERT_PATH=/Users/andreysergienko/.docker/machine/machines/default
