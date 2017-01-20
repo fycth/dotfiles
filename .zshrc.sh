@@ -21,7 +21,8 @@ prompt 'paulmillr'
 # = Aliases =
 # ==================================================================
 
-export FINDBUGS_HOME=/Users/andreysergienko/Library/Application\ Support/IntelliJIdea2016.2/FindBugs-IDEA-1.0.0/lib
+
+alias history='history -i'
 
 alias ruby=/usr/local/Cellar/ruby/2.3.1/bin/ruby
 alias vi=/usr/local/Cellar/vim/8.0.0142/bin/vim
@@ -393,10 +394,3 @@ function preview() {
   [[ -z "$item" ]] && item='.'
   open $1 -a 'Preview'
 }
-
-export HISTTIMEFORMAT="%d/%m/%y %T "
-
-# docker-osx-dev
-export DOCKER_HOST=tcp://192.168.99.100:2376
-export DOCKER_CERT_PATH=/Users/andreysergienko/.docker/machine/machines/default
-export DOCKER_TLS_VERIFY=1
