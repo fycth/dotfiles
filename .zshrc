@@ -55,7 +55,7 @@ ZSH_CUSTOM=~/dotfiles/custom-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # zsh-syntax-highlighting should be the last plugin in the list !!!
-plugins=(git, zsh-completions, zsh-syntax-highlighting)
+plugins=(iwhois rsync svn encode64 git zsh-completions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
