@@ -1,3 +1,4 @@
+
 alias maven="command mvn"
 function color_maven() {
     local BLUE="\x1b[0;34m"
