@@ -149,41 +149,21 @@ prompt_bzr() {
     fi
 }
 
-prompt_hg() {
-  (( $+commands[hg] )) || return
-  local rev status
-  if $(hg id >/dev/null 2>&1); then
-    if $(hg prompt >/dev/null 2>&1); then
-      if [[ $(hg prompt "{status|unknown}") = "?" ]]; then
-        # if files are not added
-        prompt_segment red white
-        st='±'
-      elif [[ -n $(hg prompt "{status|modified}") ]]; then
-        # if any modification
-        prompt_segment yellow black
-        st='±'
-      else
-        # if working copy is clean
-        prompt_segment green black
-      fi
-      echo -n $(hg prompt "☿ {rev}@{branch}") $st
-    else
-      st=""
-      rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
-      branch=$(hg id -b 2>/dev/null)
-      if `hg st | grep -q "^\?"`; then
-        prompt_segment red black
-        st='±'
-      elif `hg st | grep -q "^[MA]"`; then
-        prompt_segment yellow black
-        st='±'
-      else
-        prompt_segment green black
-      fi
-      echo -n "☿ $rev@$branch" $st
-    fi
-  fi
-}
+prompt_svn() {
+        local rev branch
+        if in_svn; then
+            rev=$(svn_get_rev_nr)
+            branch=$(svn_get_branch_name)
+            if [[ $(svn_dirty_choose_pwd 1 0) -eq 1 ]]; then
+                prompt_segment yellow black
+                echo -n "$rev@$branch"
+                echo -n "±"
+            else
+                prompt_segment green black
+                echo -n "$rev@$branch"
+            fi
+        fi
+    }
 
 # Dir: current working directory
 prompt_dir() {
@@ -221,7 +201,7 @@ build_prompt() {
   prompt_dir
   prompt_git
   prompt_bzr
-  prompt_hg
+  prompt_svn
   prompt_end
 }
 
