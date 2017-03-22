@@ -31,6 +31,7 @@ alias vi=/usr/local/Cellar/vim/8.0.0142/bin/vim
 alias vim=/usr/local/Cellar/vim/8.0.0142/bin/vim
 
 alias top=/usr/bin/top -o cpu
+alias tmuxnyx=tmuxinator start nyx-shells
 
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
