@@ -27,8 +27,8 @@ alias mvn=color_maven
 alias octave='octave --no-gui-libs'
 alias sed=gsed
 alias ruby=/usr/local/Cellar/ruby/2.4.0/bin/ruby
-alias vi=/usr/local/Cellar/vim/8.0.0562/bin/vim
-alias vim=/usr/local/Cellar/vim/8.0.0562/bin/vim
+alias vi=/usr/local/Cellar/vim/8.0.0586/bin/vim
+alias vim=/usr/local/Cellar/vim/8.0.0586/bin/vim
 
 alias top='/usr/bin/top -o cpu'
 alias tmuxnyx='tmuxinator start nyx-shells'
