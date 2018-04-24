@@ -15,6 +15,8 @@
 (require 'cl)
 (require 'package)
 
+(load-theme 'whiteboard t)
+
 ;; declare package sources
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
