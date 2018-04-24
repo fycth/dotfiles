@@ -175,10 +175,9 @@
 
 ; "projectile" recognizes git repos (etc) as "projects" and changes settings
 ; as you switch between them. 
-(projectile-global-mode 1)
 (require 'go-projectile)
 (go-projectile-tools-add-path)
-(setq gofmt-command (concat go-projectile-tools-path "/bin/goimports"))
+;(setq gofmt-command (concat go-projectile-tools-path "/bin/goimports"))
 
 ; "company" is auto-completion
 (require 'company)
