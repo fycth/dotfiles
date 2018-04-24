@@ -1,4 +1,6 @@
 
+. /Users/andreysergienko/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
 alias maven="command mvn"
 function color_maven() {
     local BLUE="\x1b[0;34m"
@@ -27,8 +29,8 @@ alias mvn=color_maven
 alias octave='octave --no-gui-libs'
 alias sed=gsed
 alias ruby=/usr/local/Cellar/ruby/2.4.0/bin/ruby
-alias vi=/usr/local/Cellar/vim/8.0.0586/bin/vim
-alias vim=/usr/local/Cellar/vim/8.0.0586/bin/vim
+alias vi=/usr/local/Cellar/vim/8.0.1400/bin/vim
+alias vim=/usr/local/Cellar/vim/8.0.1400/bin/vim
 
 alias top='/usr/bin/top -o cpu'
 alias tmuxnyx='tmuxinator start nyx-shells'
@@ -50,6 +52,13 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
   # Sniff network info.
   alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+
+  export EMACSCLIENT="$(brew --prefix emacs)/bin/emacsclient"
+  export PATH="$PATH:${HOME}/dotfiles/bin"
+  alias emacs="et"
+  alias emacsc="ec &"
+  alias emacsd="/Applications/Emacs.app/Contents/MacOS/Emacs --daemon"
+  alias emacsclient=${EMACSCLIENT}
 else
   # Process grep should output full paths to binaries.
   alias pgrep='pgrep -fl'
@@ -181,3 +190,10 @@ function maxcpu() {
   yes > $dn & yes > $dn & yes > $dn & yes > $dn &
 }
 
+# Go development
+export GOPATH="${HOME}/gdfs/gdfs_vm1/go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+test -d "${GOPATH}" || mkdir "${GOPATH}"
+test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
