@@ -131,3 +131,6 @@ call neocomplete#util#set_default_dictionary(
   \ 'g:neocomplete#sources#omni#input_patterns',
   \ 'elm',
   \ '\.')
+
+" make :w!! to save a file if you have no permissions)
+cmap w!! w !sudo tee % >/dev/null
