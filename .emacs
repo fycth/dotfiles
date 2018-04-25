@@ -41,6 +41,7 @@
     web-mode
     dash-at-point
     neotree
+    elscreen
     )
   "A list of packages to ensure are installed at launch.")
 
@@ -81,6 +82,21 @@
 ;(toggle-hl-line-when-idle)
 
 (projectile-global-mode)
+
+;; ---------------------------------------
+;; load elscreen
+;; ---------------------------------------
+;(load "elscreen" "ElScreen" t)
+(elscreen-start)
+
+;; F9 creates a new elscreen, shift-F9 kills it
+(global-set-key [f9] 'elscreen-create)
+(global-set-key [S-f9] 'elscreen-kill)
+
+;; Windowskey+PgUP/PgDown switches between elscreens
+(global-set-key (kbd "C-M-_") 'elscreen-previous)
+(global-set-key (kbd "C-M-+") 'elscreen-next)
+
 
 (setq projectile-switch-project-action 'neotree-projectile-action)
 (require 'neotree)
