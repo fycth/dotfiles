@@ -191,9 +191,18 @@ function maxcpu() {
 }
 
 # Go development
-export GOPATH="${HOME}/gdfs/gdfs_vm1/go"
 export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-
-test -d "${GOPATH}" || mkdir "${GOPATH}"
-test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+PATH="$PATH:${GOROOT}/bin"
+gopaths=(
+  "${HOME}/.go"
+#  "${HOME}/gdfs/gdfs_vm1/go"
+)
+for ((i = 1; i <= ${#gopaths[@]}; i++))
+do
+  ITEM=${gopaths[$i]}
+  GOPATH="$GOPATH:${ITEM}"
+  PATH="$PATH:${ITEM}/bin"
+  test -d "${ITEM}" || mkdir "${ITEM}"
+done
+export GOPATH=${GOPATH:1}
+export PATH
