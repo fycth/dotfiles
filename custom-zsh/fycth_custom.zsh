@@ -28,15 +28,16 @@ function color_maven() {
 alias mvn=color_maven
 alias octave='octave --no-gui-libs'
 alias sed=gsed
-alias ruby=/usr/local/Cellar/ruby/2.4.0/bin/ruby
-alias vi=/usr/local/Cellar/vim/8.0.1400/bin/vim
-alias vim=/usr/local/Cellar/vim/8.0.1400/bin/vim
 
 alias top='/usr/bin/top -o cpu'
 alias tmuxnyx='tmuxinator start nyx-shells'
 
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
+  alias ruby=$(brew --prefix ruby)/bin/ruby
+  alias vi=$(brew --prefix vim)/bin/vim
+  alias vim=vi
+
   # Short-cuts for copy-paste.
   alias c='pbcopy'
   alias p='pbpaste'
@@ -206,3 +207,5 @@ do
 done
 export GOPATH=${GOPATH:1}
 export PATH
+
+export JAVA_HOME=$(/usr/libexec/java_home)
