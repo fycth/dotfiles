@@ -1,6 +1,0 @@
-[ui]
-username = Andrey Sergienko <andrey.sergienko@gmail.com>
-
-[paths]
-dotfiles = https://anseko@bitbucket.org/anseko/dotfiles
-analytics-server = https://anseko@bitbucket.org/anseko/analytics-server
