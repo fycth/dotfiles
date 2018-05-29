@@ -191,6 +191,41 @@ function maxcpu() {
   yes > $dn & yes > $dn & yes > $dn & yes > $dn &
 }
 
+# show todos on a git repo
+function todos() {
+  (todo_list) | while IFS= read -r todo; do printf "%s\n" "$(file_path):$(line_number) $(line_author) $(message)"; done
+}
+
+function todo_list() {
+  grep -InR 'TODO' ./* \
+    --exclude-dir=node_modules \
+    --exclude-dir=public \
+    --exclude-dir=vendor \
+    --exclude-dir=compiled \
+    --exclude-dir=git-hooks
+}
+
+function line_author() {
+  LINE=$(line_number "$todo")
+  FILE=$(file_path "$todo")
+  tput setaf 6
+  printf "%s" "$(git log --pretty=format:"%cN" -s -L "$LINE","$LINE":"$FILE" | head -n 1)"
+  tput sgr0
+}
+
+function file_path() {
+  printf "%s" "$todo" | cut -d':' -f 1
+}
+
+function line_number() {
+  printf "%s" "$todo" | cut -d':' -f 2
+}
+
+function message() {
+  printf "%s" "$todo" | cut -d':' -f 3 | xargs
+}
+# end of todos
+
 # Go development
 export GOROOT="$(brew --prefix golang)/libexec"
 PATH="$PATH:${GOROOT}/bin"
