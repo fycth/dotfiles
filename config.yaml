@@ -9,3 +9,10 @@ templates:
 #    category: value
 #    copyright: value
     github-username: fycth
+
+extra-lib-dirs:
+- /usr/local/opt/openssl/lib
+
+extra-include-dirs:
+- /usr/local/opt/openssl/include
+
