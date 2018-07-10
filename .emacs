@@ -9,6 +9,7 @@
 (load "~/.emacs.rc/flycheck-rc.el")
 (load "~/.emacs.rc/haskell-mode-rc.el")
 (load "~/.emacs.rc/golang-mode-rc.el")
+(load "~/.emacs.rc/multiple-cursors-rc.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

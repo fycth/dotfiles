@@ -30,6 +30,7 @@
     dash-at-point
     neotree
     elscreen
+    multiple-cursors
     )
   "A list of packages to ensure are installed at launch.")
 
