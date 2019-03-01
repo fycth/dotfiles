@@ -1,5 +1,9 @@
 
-. /Users/andreysergienko/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+. ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+POWERLEVEL9K_DISABLE_RPROMPT=true
+#DEFAULT_USER=as
+#USER=as
 
 alias maven="command mvn"
 function color_maven() {
@@ -35,8 +39,8 @@ alias tmuxnyx='tmuxinator start nyx-shells'
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
   alias ruby=$(brew --prefix ruby)/bin/ruby
-  alias vi=$(brew --prefix vim)/bin/vim
-  alias vim=vi
+  alias vim=$(brew --prefix vim)/bin/vim
+#  alias vi=vim
 
   # Short-cuts for copy-paste.
   alias c='pbcopy'
@@ -56,10 +60,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
   export EMACSCLIENT="$(brew --prefix emacs)/bin/emacsclient"
   export PATH="$PATH:${HOME}/dotfiles/bin"
-  alias emacs="et"
-  alias emacsc="ec &"
-  alias emacsd="/Applications/Emacs.app/Contents/MacOS/Emacs --daemon"
-  alias emacsclient=${EMACSCLIENT}
+#  alias emacs="et"
+#  alias emacsc="ec &"
+#  alias emacsd="/Applications/Emacs.app/Contents/MacOS/Emacs --daemon"
+#  alias emacsclient=${EMACSCLIENT}
 else
   # Process grep should output full paths to binaries.
   alias pgrep='pgrep -fl'
@@ -225,6 +229,8 @@ function message() {
   printf "%s" "$todo" | cut -d':' -f 3 | xargs
 }
 # end of todos
+
+PATH="$PATH:/Users/as/.local/bin"
 
 # Go development
 export GOROOT="$(brew --prefix golang)/libexec"
