@@ -50,3 +50,30 @@
 (if (boundp 'buffer-file-coding-system)
     (setq-default buffer-file-coding-system 'utf-8)
   (setq default-buffer-file-coding-system 'utf-8))
+
+;; use the clipboard buffer on X11
+(setq x-select-enable-clipboard t)
+
+;; overwrite an active region with a yank
+(delete-selection-mode t)
+
+;(electric-indent-mode t)
+(global-set-key (kbd "RET") 'newline-and-indent)
+
+;; useful to have a better overview where in the buffer the point is
+;;(global-hl-line-mode t)
+
+;; Open a file as root
+(defun ck/find-file-as-root ()
+  "Like `ido-find-file, but automatically edit the file with
+root-privileges (using tramp/sudo), if the file is not writable by
+user."
+  (interactive)
+  (let ((file (helm-read-file-name "Edit as root: ")))
+    (unless (file-writable-p file)
+      (setq file (concat "/sudo:root@localhost:" file)))
+    (find-file file)))
+(global-set-key (kbd "C-x F") 'ck/find-file-as-root)
+
+(global-set-key (kbd "s-/") 'comment-line)
+

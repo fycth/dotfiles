@@ -2,10 +2,21 @@
 
 (require 'multiple-cursors)
 
-;; When you have an active region that spans multiple lines, the following will add a cursor to each line:
-(global-set-key (kbd "C-.") 'mc/edit-lines)
-
-;; When you want to add multiple cursors not based on continuous lines, but based on keywords in the buffer, use:
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c c") (defhydra hydra-multiple-cursors (:color blue)
+  "
+  ^
+  ^Cursors^           ^Do^
+  ^─────^─────────────^──^────────
+  _q_ quit            _._ Edit lines
+  ^^                  _n_ Mark next lik ethis
+  ^^                  _p_ Mark previous like this
+  ^^                  _a_ Mark all like this
+  ^^                  _c_ Clear cursors
+  ^^                  ^^
+  "
+  ("q" nil)
+  ("." mc/edit-lines)
+  ("n" mc/mark-next-like-this)
+  ("p" mc/mark-previous-like-this)
+  ("a" mc/mark-all-like-this)
+  ("c" mc/keyboard-quit)))
