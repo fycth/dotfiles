@@ -13,9 +13,14 @@
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
 
+(require 'gnutls)
+(add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
+
 ;; define a list of packages to install via package manager
 (defvar my-packages
-  '(intero
+  '(gnutls
+    ag
+    company-ghc
     fiplr
     magit
     go-projectile
@@ -31,6 +36,10 @@
     neotree
     elscreen
     multiple-cursors
+    markdown-mode
+    yasnippet
+    hydra
+    git-gutter
     )
   "A list of packages to ensure are installed at launch.")
 
