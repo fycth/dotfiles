@@ -16,3 +16,5 @@ extra-lib-dirs:
 extra-include-dirs:
 - /usr/local/opt/openssl/include
 
+allow-newer: true
+
