@@ -3,7 +3,7 @@
 # tmuxinator start my-shells
 
 name: my-shells
-root: ~/nyx/dev/
+root: ~/dev/
 
 # Optional tmux socket
 # socket_name: foo
@@ -31,13 +31,14 @@ root: ~/nyx/dev/
 
 windows:
   - mc:
-      mc
+      - cd ~/dev/
+      - mc
   - JVM:
       layout: main-horizontal
       panes:
-        -
-        -
+        - cd ~/dev/vms/ubuntu1604
+        - cd ~/gdfs/gdfs_vm1
   - VM:
       layout: main-horizontal
       panes:
-        - cd ~/nyx/vagrant/nyx1
+        - cd ~/dev
