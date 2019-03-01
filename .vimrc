@@ -1,6 +1,9 @@
 syntax on
 filetype plugin indent on
 
+"set diffopt+=algorithm:patience
+"set diffopt+=indent-heuristic
+
 set backspace=2
 set hidden
 set nocompatible
