@@ -8,3 +8,5 @@ gradle
 .classpath
 .project
 elm-stuff
+.settings
+
