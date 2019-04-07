@@ -2,8 +2,6 @@
 . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 POWERLEVEL9K_DISABLE_RPROMPT=true
-#DEFAULT_USER=as
-#USER=as
 
 alias maven="command mvn"
 function color_maven() {
