@@ -27,6 +27,8 @@ set wildmode=longest,list,full
 set wildmenu
 set completeopt+=longest
 
+nnoremap <C-P> :Files<CR>
+
 set t_Co=256
 
 set cmdheight=1
@@ -62,7 +64,12 @@ endif
 let g:haskellmode_completion_ghc = 1
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-map <Leader>n :NERDTreeToggle<CR>
+" NERDTree on ctrl+n
+let NERDTreeShowHidden=1
+map <silent> <C-n> :NERDTreeToggle<CR>
+
+" close NERDTree after a file is opened
+let g:NERDTreeQuitOnOpen=1
 
 let g:haskell_tabular = 1
 
@@ -73,8 +80,6 @@ vmap a- :Tabularize /-><CR>
 map <silent> <Leader>t :CtrlP()<CR>
 noremap <leader>b<space> :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/]dist$'
-
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 let g:airline#extensions#tabline#enabled = 1
 
