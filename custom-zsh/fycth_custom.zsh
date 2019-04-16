@@ -62,6 +62,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
 #  alias emacsc="ec &"
 #  alias emacsd="/Applications/Emacs.app/Contents/MacOS/Emacs --daemon"
 #  alias emacsclient=${EMACSCLIENT}
+
+# Go development
+   export GOROOT="$(brew --prefix golang)/libexec"
+   PATH="$PATH:${GOROOT}/bin"
 else
   # Process grep should output full paths to binaries.
   alias pgrep='pgrep -fl'
@@ -230,12 +234,8 @@ function message() {
 
 PATH="$PATH:/Users/as/.local/bin"
 
-# Go development
-export GOROOT="$(brew --prefix golang)/libexec"
-PATH="$PATH:${GOROOT}/bin"
 gopaths=(
   "${HOME}/.go"
-#  "${HOME}/gdfs/gdfs_vm1/go"
 )
 for ((i = 1; i <= ${#gopaths[@]}; i++))
 do
