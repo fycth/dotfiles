@@ -37,7 +37,7 @@ alias tmuxnyx='tmuxinator start nyx-shells'
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
   alias ruby=$(brew --prefix ruby)/bin/ruby
-  alias vim=$(brew --prefix vim)/bin/vim
+  alias vim=$(brew --prefix nvim)/bin/nvim
 #  alias vi=vim
 
   # Short-cuts for copy-paste.
