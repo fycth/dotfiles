@@ -1,2 +1,0 @@
-set -e
-exec $EMACSCLIENT -c -a ${HOME}/dotfiles/bin/emacsc "$@"
