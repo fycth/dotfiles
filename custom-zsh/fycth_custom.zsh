@@ -251,3 +251,5 @@ if [ -f /usr/libexec/java_home ]
 then
   export JAVA_HOME=$(/usr/libexec/java_home)
 fi
+
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
