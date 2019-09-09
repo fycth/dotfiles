@@ -26,3 +26,5 @@
 # Project stuff
 
 custom-zsh/themes/powerlevel9k
+
+.config/nvim/plugged
