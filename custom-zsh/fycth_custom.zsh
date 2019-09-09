@@ -56,6 +56,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # Sniff network info.
   alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 
+  alias emacs="$(brew --prefix emacs)/bin/emacs"
+  export EMACS="$(brew --prefix emacs)/bin/emacs"
   export EMACSCLIENT="$(brew --prefix emacs)/bin/emacsclient"
   export PATH="$PATH:${HOME}/dotfiles/bin"
 #  alias emacs="et"
