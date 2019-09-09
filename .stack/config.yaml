@@ -18,6 +18,6 @@ extra-include-dirs:
 
 allow-newer: true
 
-ghc-options:
-  "$locals": -fhide-source-paths
+#ghc-options:
+#  "$locals": -fhide-source-paths
 
