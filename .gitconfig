@@ -2,6 +2,9 @@
 	name = Andrii Sergiienko
 	email = andrey.sergienko@gmail.com
 
+[includeIf "gitdir:~/dev/returnado/"]
+  path = ~/.gitconfig-returnado
+
 [github]
   user = fycth
 
