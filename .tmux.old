@@ -1,0 +1,138 @@
+# set prefix key to ctrl-space
+unbind C-b
+set -g prefix C-]
+bind C-] send-prefix
+
+bind q kill-session
+
+# vi keys for switching panes
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+# Splitting panes.
+bind - split-window -v
+bind | split-window -h
+
+# shift-movement keys will resize panes
+bind J resize-pane -D 5
+bind K resize-pane -U 5
+bind H resize-pane -L 5
+bind L resize-pane -R 5
+
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+
+# count windows and panes from 1
+set -g base-index 1
+setw -g pane-base-index 1
+
+# renumber windows after closing
+set -g renumber-windows on
+
+# increase the scrollback history
+set -g history-limit 10000
+
+# tmux < v2.1:
+if-shell "[[ `tmux -V | cut -d' ' -f2` -lt 2.1 ]]" "setw -g mode-mouse off"
+# tmux >= v2.1:
+if-shell "[[ `tmux -V | cut -d' ' -f2` -ge 2.1 ]]" "setw -g mouse off"
+
+# pass xtterm-style keys to make many key combinations work as expected
+setw -g xterm-keys on
+
+# monitor window activity
+setw -g monitor-activity on
+
+# prevent tmux from displaying activity in window x messages
+set -g visual-activity off
+
+# switch to vim-style keys
+set -g status-keys vi
+setw -g mode-keys vi
+
+# disable delay between esc key and subsequent characters
+set -sg escape-time 0
+
+# set to UTF-8 by default
+#setw -g utf8 on
+#set -g status-utf8 on
+
+# enable 256 colors
+set -g default-terminal "screen-256color"
+
+# pane resizing with Prefix + Alt-h/j/k/l
+#bind -r M-h resize-pane -L 5
+#bind -r M-j resize-pane -D 5
+#bind -r M-k resize-pane -U 5
+#bind -r M-l resize-pane -R 5
+
+# pane splitting with Prefix + | and Prefix + -
+#bind | split-window -h -c "#{pane_current_path}"
+#bind - split-window -v -c "#{pane_current_path}"
+
+# movement of windows with Prefix + < and Prefix + >
+#bind -r < swap-window -t -1
+#bind -r > swap-window -t +1
+
+# make Prefix + 0 go to windows 10
+#bind 0 select-window -t :10
+
+# when renaming window with Prefix + , do not show original window name
+bind , command-prompt -p "(rename-window '#W')" "rename-window '%%'"
+
+# do the same for session names: Prefix + $
+bind '$' command-prompt -p "(rename-session '#S')" "rename-session '%%'"
+
+# make Prefix + f search only in windows' names
+bind f command-prompt -p "(find-window)" "find-window -N '%%'"
+
+# reload tmux configuration with Prefix + R
+bind R source-file ~/.tmux.conf \; display "Configuration reloaded."
+
+# toggle pane synchronization with Prefix + S
+bind S set synchronize-panes
+
+# make Prefix + Ctrl + b start copy and scroll one page up
+bind C-b copy-mode -u
+
+# make Prefix + b start copy mode without scrolling up
+bind b copy-mode
+
+# Vi copypaste
+setw -g mode-keys vi
+unbind p
+bind p paste-buffer
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+# Smart pane switching with awareness of Vim splits. Now, I can use Ctrl+hjkl
+# in both Vim and Tmux (without using the prefix). Based on
+# http://www.codeography.com/2013/06/19/navigating-vim-and-tmux-splits.
+# Note: I do not use https://github.com/christoomey/vim-tmux-navigator because
+#       it does not work when vim is run over ssh.
+# Note: The "... || true" part is there to prevent annoying messages when there
+#       is no pane to switch into.
+bind -n C-h run "(tmux display-message -p '#{pane_title}' | grep -iq vim && tmux send-keys C-h) || (tmux select-pane -L || true)"
+bind -n C-j run "(tmux display-message -p '#{pane_title}' | grep -iq vim && tmux send-keys C-j) || (tmux select-pane -D || true)"
+bind -n C-k run "(tmux display-message -p '#{pane_title}' | grep -iq vim && tmux send-keys C-k) || (tmux select-pane -U || true)"
+bind -n C-l run "(tmux display-message -p '#{pane_title}' | grep -iq vim && tmux send-keys C-l) || (tmux select-pane -R || true)"
+
+# Occasionally, it may happen that the above smart-pane-switching keys do not
+# work. In such a case, the following bindings allow me to force pane switching
+# by using Ctrl+hjkl with prefix.
+#bind C-h select-pane -L
+#bind C-j select-pane -D
+#bind C-k select-pane -U
+#bind C-l select-pane -R
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+
+set-window-option -g window-status-current-bg blue
+
