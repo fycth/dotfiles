@@ -13,3 +13,6 @@
 [submodule ".config/nvim/bundle/intero-neovim"]
 	path = .config/nvim/bundle/intero-neovim
 	url = https://github.com/parsonsmatt/intero-neovim.git
+[submodule ".tmux"]
+	path = .tmux
+	url = https://github.com/gpakosz/.tmux.git
