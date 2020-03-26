@@ -1,4 +1,6 @@
 :set prompt  "\x03BB: "
+:set prompt-cont "| "
 :def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
 :def package \ m -> return $ ":! ghc-pkg --simple-output find-module " ++ m
+:set -freverse-errors
 
