@@ -1,5 +1,7 @@
 " :PlugInstall - after clean installation
 
+set nocompatible
+
 set directory=~/.vim/backup
 set backupdir=~/.vim/backup " keep swap files here
 filetype off                " required
@@ -122,7 +124,7 @@ set matchtime=2             " Time during which the matching parenthesis is show
 set background=dark         " Color adapted to dark background.
 set listchars=tab:▸\ ,eol:¬ " Invisible characters representation when :set list.
 set clipboard=unnamedplus   " Copy/Paste to/from clipboard
-set cursorline              " Highlight line cursor is currently on
+" set cursorline              " Highlight line cursor is currently on
 set completeopt+=noinsert   " Select the first item of popup menu automatically without inserting it
 
 " Search
@@ -146,24 +148,24 @@ nnoremap <leader>l :set list!<CR>
 nnoremap <C-p> :FZF<CR>
 
 " Disable arrow keys and page up / down
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
-vnoremap <Up> <nop>
-vnoremap <Down> <nop>
-vnoremap <Left> <nop>
-vnoremap <Right> <nop>
-noremap <PageUp> <nop>
-inoremap <PageUp> <nop>
-vnoremap <PageUp> <nop>
-noremap <PageDown> <nop>
-inoremap <PageDown> <nop>
-vnoremap <PageDown> <nop>
+" noremap <Up> <nop>
+" noremap <Down> <nop>
+" noremap <Left> <nop>
+" noremap <Right> <nop>
+" inoremap <Up> <nop>
+" inoremap <Down> <nop>
+" inoremap <Left> <nop>
+" inoremap <Right> <nop>
+" vnoremap <Up> <nop>
+" vnoremap <Down> <nop>
+" vnoremap <Left> <nop>
+" vnoremap <Right> <nop>
+" noremap <PageUp> <nop>
+" inoremap <PageUp> <nop>
+" vnoremap <PageUp> <nop>
+" noremap <PageDown> <nop>
+" inoremap <PageDown> <nop>
+" vnoremap <PageDown> <nop>
 
 " Disable mouse / touchpad (only in vim)
 set mouse=nicr
