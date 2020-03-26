@@ -3,6 +3,23 @@
 
 POWERLEVEL9K_DISABLE_RPROMPT=true
 
+export MANPAGER='less'
+export LESS="-ismWXr"
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+
+
+# fj i [F]ind in [Journal]
+# it searches for a term in journal files
+# and all this with preview!
+function fj() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  rg --files-with-matches --no-messages "$1" ~/journal | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
 alias maven="command mvn"
 function color_maven() {
     local BLUE="\x1b[0;34m"
@@ -36,8 +53,8 @@ alias tmuxnyx='tmuxinator start nyx-shells'
 
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
-  alias ruby=$(brew --prefix ruby)/bin/ruby
-  alias vim=$(brew --prefix nvim)/bin/nvim
+  alias ruby=/usr/local/opt/ruby/bin/ruby
+  alias vim=/usr/local/opt/neovim/bin/nvim
 #  alias vi=vim
 
   # Short-cuts for copy-paste.
@@ -46,6 +63,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
   # Remove all items safely, to Trash (`brew install trash`).
   alias rm='trash'
+
+  alias pip=pip3
+  alias python=python3
 
   # Case-insensitive pgrep that outputs full path.
   alias pgrep='pgrep -fli'
@@ -56,17 +76,13 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # Sniff network info.
   alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 
-  alias emacs="$(brew --prefix emacs)/bin/emacs"
-  export EMACS="$(brew --prefix emacs)/bin/emacs"
-  export EMACSCLIENT="$(brew --prefix emacs)/bin/emacsclient"
+  alias emacs="/usr/local/opt/emacs/bin/emacs"
+  export EMACS="/usr/local/opt/emacs/bin/emacs"
+  export EMACSCLIENT="/usr/local/opt/emacs/bin/emacsclient"
   export PATH="$PATH:${HOME}/dotfiles/bin"
-#  alias emacs="et"
-#  alias emacsc="ec &"
-#  alias emacsd="/Applications/Emacs.app/Contents/MacOS/Emacs --daemon"
-#  alias emacsclient=${EMACSCLIENT}
 
 # Go development
-   export GOROOT="$(brew --prefix golang)/libexec"
+   export GOROOT="$/usr/local/opt/go/libexec"
    PATH="$PATH:${GOROOT}/bin"
 else
   # Process grep should output full paths to binaries.
@@ -86,6 +102,34 @@ function manp {
     done
   else
     print 'What manual page do you want?' >&2
+  fi
+}
+
+function kp {
+# mnemonic: [K]ill [P]rocess
+# show output of "ps -ef", use [tab] to select one or multiple entries
+# press [enter] to kill selected processes and go back to the process list.
+# or press [escape] to go back to the process list. Press [escape] twice to exit completely.
+
+  local pid=$(ps -ef | sed 1d | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[kill:process]'" | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+    kp
+  fi
+}
+
+function fp {
+# mnemonic: [F]ind [P]ath
+# list directories in $PATH, press [enter] on an entry to list the executables inside.
+# press [escape] to go back to directory listing, [escape] twice to exit completely
+
+  local loc=$(echo $PATH | sed -e $'s/:/\\\n/g' | eval "fzf ${FZF_DEFAULT_OPTS} --header='[find:path]'")
+
+  if [[ -d $loc ]]; then
+    echo "$(rg --files $loc | rev | cut -d"/" -f1 | rev)" | eval "fzf ${FZF_DEFAULT_OPTS} --header='[find:exe] => ${loc}' >/dev/null"
+    fp
   fi
 }
 
@@ -254,4 +298,9 @@ then
   export JAVA_HOME=$(/usr/libexec/java_home)
 fi
 
+export LEDGER_FILE=~/.hledger/main.txt
+
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+
+source ~/.ghcup/env
+
