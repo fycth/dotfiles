@@ -65,5 +65,8 @@
 	trustExitCode = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+# this option below is a workaround for a bug in Rust's Cargo
+[net]
+	git-fetch-with-cli = true
 [merge]
 	ff = false

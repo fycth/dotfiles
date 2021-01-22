@@ -76,9 +76,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # Sniff network info.
   alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 
-  alias emacs="/usr/local/opt/emacs/bin/emacs"
-  export EMACS="/usr/local/opt/emacs/bin/emacs"
-  export EMACSCLIENT="/usr/local/opt/emacs/bin/emacsclient"
+  alias emacs="/usr/local/opt/emacs-mac/bin/emacs"
+  export EMACS="/usr/local/opt/emacs-mac/bin/emacs"
+  export EMACSCLIENT="/usr/local/opt/emacs-mac/bin/emacsclient"
   export PATH="$PATH:${HOME}/dotfiles/bin"
 
 # Go development
@@ -301,6 +301,8 @@ fi
 export LEDGER_FILE=~/.hledger/main.txt
 
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+
+export FZF_DEFAULT_COMMAND='fd'
 
 source ~/.ghcup/env
 

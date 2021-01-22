@@ -90,3 +90,4 @@ source $ZSH/oh-my-zsh.sh
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -e /Users/as/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/as/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
