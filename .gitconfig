@@ -8,6 +8,9 @@
 [github]
   user = fycth
 
+[commit]
+  template = ~/.gitmessage
+
 [alias]
   br = branch
   cb = "!sh -c 'git branch $1 && git ch $1' -"

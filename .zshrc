@@ -91,3 +91,7 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if [ -e /Users/as/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/as/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/as/.sdkman"
+[[ -s "/Users/as/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/as/.sdkman/bin/sdkman-init.sh"

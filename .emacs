@@ -55,7 +55,7 @@
      ("melpa stable" . "https://stable.melpa.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(lsp lsp-java flycheck-haskell haskell-emacs xwwp-follow-link-ivy treemacs-evil treemacs use-package markdown-mode dracula-theme smart-mode-line company company-ghci exec-path-from-shell diff-hl haskell-mode rainbow-delimiters evil smex))
+   '(ergoemacs-mode lsp lsp-java flycheck-haskell haskell-emacs xwwp-follow-link-ivy treemacs-evil treemacs use-package markdown-mode dracula-theme smart-mode-line company company-ghci exec-path-from-shell diff-hl haskell-mode rainbow-delimiters evil smex))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
@@ -95,7 +95,6 @@
 ;; when installing package, it will be always downloaded automatically from
 ;; repository if is not available locally
 (setq use-package-always-ensure t)
-
 
 ;; set default startup screen
 (setq inhibit-startup-screen t)
@@ -149,6 +148,11 @@
 ;;(require 'smex)
 ;;(global-set-key (kbd "M-x") 'smex)
 
+(use-package ergoemacs-mode)
+(setq ergoemacs-theme nil) ;; Uses Standard Ergoemacs keyboard theme
+(setq ergoemacs-keyboard-layout "us") ;; Assumes QWERTY keyboard layout
+(ergoemacs-mode 1)
+
 (use-package ivy)
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -167,7 +171,7 @@
     (lambda () (call-interactively #'save-buffer))
 )
 
-(global-set-key (kbd "<f12>") 'evil-local-mode)
+(global-set-key (kbd "<f10>") 'evil-local-mode)
 
 (use-package rainbow-delimiters)
 
