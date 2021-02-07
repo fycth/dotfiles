@@ -55,7 +55,7 @@
      ("melpa stable" . "https://stable.melpa.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(lsp lsp-java flycheck-haskell haskell-emacs xwwp-follow-link-ivy treemacs-evil treemacs use-package markdown-mode dracula-theme smart-mode-line company company-ghci exec-path-from-shell diff-hl haskell-mode rainbow-delimiters evil smex))
+   '(lsp-haskell which-key lsp-ui helm-lsp lsp-mode ivy yasnippet-snippets yasnippet flycheck lsp lsp-java flycheck-haskell haskell-emacs xwwp-follow-link-ivy treemacs-evil treemacs use-package markdown-mode dracula-theme smart-mode-line company company-ghci exec-path-from-shell diff-hl haskell-mode rainbow-delimiters evil smex))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
