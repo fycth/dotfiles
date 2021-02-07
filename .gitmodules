@@ -16,3 +16,12 @@
 [submodule ".tmux"]
 	path = .tmux
 	url = https://github.com/gpakosz/.tmux.git
+[submodule "custom-zsh/plugins/zsh-completions"]
+	path = custom-zsh/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+[submodule "custom-zsh/plugins/zsh-syntax-highlighting"]
+	path = custom-zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "custom-zsh/themes/powerlevel9k"]
+	path = custom-zsh/themes/powerlevel9k
+	url = https://github.com/Powerlevel9k/powerlevel9k
