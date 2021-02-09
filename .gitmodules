@@ -22,9 +22,6 @@
 [submodule "custom-zsh/plugins/zsh-syntax-highlighting"]
 	path = custom-zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "custom-zsh/themes/powerlevel9k"]
-	path = custom-zsh/themes/powerlevel9k
-	url = https://github.com/Powerlevel9k/powerlevel9k
 [submodule "custom-zsh/themes/powerlevel10k"]
 	path = custom-zsh/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
