@@ -9,4 +9,5 @@ gradle
 .project
 elm-stuff
 .settings
+.factorypath
 

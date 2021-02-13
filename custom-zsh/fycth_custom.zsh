@@ -20,6 +20,8 @@ function fj() {
   rg --files-with-matches --no-messages "$1" ~/journal | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
+alias sed=gsed
+
 alias maven="command mvn"
 function color_maven() {
     local BLUE="\x1b[0;34m"
@@ -32,7 +34,7 @@ function color_maven() {
     local LIGHT_BLUE="\x1b[1;34m"
     local LIGHT_CYAN="\x1b[1;36m"
     local NO_COLOUR="\x1b[0m"
-    maven $* | gsed \
+    maven $* | sed \
         -e "s/Tests run: \([^,]*\), Failures: \([^,]*\), Errors: \([^,]*\), Skipped: \([^,]*\)/${LIGHT_GREEN}Tests run: \1$NO_COLOUR, Failures: $RED\2$NO_COLOUR, Errors: $YELLOW\3$NO_COLOUR, Skipped: $LIGHT_BLUE\4$NO_COLOUR/g" \
         -e "s/\(\[\{0,1\}WARN\(ING\)\{0,1\}\]\{0,1\}.*\)/$YELLOW\1$NO_COLOUR/g" \
         -e "s/\(\[ERROR\].*\)/$RED\1$NO_COLOUR/g" \
@@ -46,7 +48,6 @@ function color_maven() {
 }
 alias mvn=color_maven
 alias octave='octave --no-gui-libs'
-alias sed=gsed
 
 alias top='/usr/bin/top -o cpu'
 alias tmuxnyx='tmuxinator start nyx-shells'
@@ -56,6 +57,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias ruby=/usr/local/opt/ruby/bin/ruby
   alias vim=/usr/local/opt/neovim/bin/nvim
 #  alias vi=vim
+
+  alias git=/usr/local/bin/git
 
   # Short-cuts for copy-paste.
   alias c='pbcopy'
