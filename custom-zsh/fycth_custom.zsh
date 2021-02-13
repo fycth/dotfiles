@@ -20,8 +20,6 @@ function fj() {
   rg --files-with-matches --no-messages "$1" ~/journal | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
-alias sed=gsed
-
 alias maven="command mvn"
 function color_maven() {
     local BLUE="\x1b[0;34m"
@@ -50,14 +48,13 @@ alias mvn=color_maven
 alias octave='octave --no-gui-libs'
 
 alias top='/usr/bin/top -o cpu'
-alias tmuxnyx='tmuxinator start nyx-shells'
 
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
   alias ruby=/usr/local/opt/ruby/bin/ruby
   alias vim=/usr/local/opt/neovim/bin/nvim
 #  alias vi=vim
-
+  alias sed=gsed
   alias git=/usr/local/bin/git
 
   # Short-cuts for copy-paste.
