@@ -55,7 +55,7 @@
      ("melpa stable" . "https://stable.melpa.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(rustic ergoemacs-mode lsp lsp-java flycheck-haskell haskell-emacs xwwp-follow-link-ivy treemacs-evil treemacs use-package markdown-mode dracula-theme smart-mode-line company company-ghci exec-path-from-shell diff-hl haskell-mode rainbow-delimiters evil smex))
+   '(tabbar-ruler rustic ergoemacs-mode lsp lsp-java flycheck-haskell haskell-emacs xwwp-follow-link-ivy treemacs-evil treemacs use-package markdown-mode dracula-theme smart-mode-line company company-ghci exec-path-from-shell diff-hl haskell-mode rainbow-delimiters evil smex))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
@@ -167,8 +167,25 @@
     'evil-insert-state-exit-hook
     (lambda () (call-interactively #'save-buffer))
 )
-
 (global-set-key (kbd "<f10>") 'evil-local-mode)
+
+;; when in normal mode, cursor will be eyllow
+;;(setq evil-normal-state-cursor '(box "yellow"))
+;;(setq evil-insert-state-cursor '(bar "white"))
+
+(use-package key-chord)
+(key-chord-mode 1)
+
+;; clm/open-command-log-buffer opens small buffer that shows all the keystrokes
+;; and functions used while operating Emacs
+;;(use-package command-log-mode
+;;  :config
+;;  (global-command-log-mode)
+;;)
+
+;; answer questions with y/n (instead of yes/no)
+(fset `yes-or-no-p `y-or-n-p)
+
 
 (use-package rainbow-delimiters)
 
@@ -458,12 +475,12 @@
 (global-linum-mode 1)
 (setq linum-format "%4d \u2502 ")
 
-(defun custom/kill-this-buffer ()
-  (interactive) (kill-buffer (current-buffer)))
-(global-set-key (kbd "C-x k") 'custom/kill-this-buffer)
+;;(defun custom/kill-this-buffer ()
+;;  (interactive) (kill-buffer (current-buffer)))
+;;(global-set-key (kbd "C-x k") 'custom/kill-this-buffer)
 
-(global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-x C-x") 'execute-extended-command)
+;;(global-set-key (kbd "C-z") 'undo)
+;;(global-set-key (kbd "C-x C-x") 'execute-extended-command)
 
 ;; rust
 (use-package rustic
