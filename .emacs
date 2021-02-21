@@ -31,53 +31,6 @@
 
 ;; Configure MELPA
 (require 'package)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
- '(company-quickhelp-color-background "#4F4F4F")
- '(company-quickhelp-color-foreground "#DCDCCC")
- '(custom-enabled-themes '(whiteboard))
- '(custom-safe-themes
-   '("947190b4f17f78c39b0ab1ea95b1e6097cc9202d55c73a702395fc817f899393" "47ec21abaa6642fefec1b7ace282221574c2dd7ef7715c099af5629926eb4fd7" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "2eb1f5551310e99101f0f9426485ab73aa5386054da877aacd15d438382bb72e" default))
- '(fci-rule-color "#383838")
- '(frame-brackground-mode 'dark)
- '(nrepl-message-colors
-   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
- '(package-archive-priorities '(("MELPA Stable" . 10) ("GNU ELPA" . 5) ("MELPA" . 0)))
- '(package-archives
-   '(("gnu" . "https://elpa.gnu.org/packages/")
-     ("melpa stable" . "https://stable.melpa.org/packages/")
-     ("melpa" . "https://melpa.org/packages/")))
- '(package-selected-packages
-   '(tabbar-ruler rustic ergoemacs-mode lsp lsp-java flycheck-haskell haskell-emacs xwwp-follow-link-ivy treemacs-evil treemacs use-package markdown-mode dracula-theme smart-mode-line company company-ghci exec-path-from-shell diff-hl haskell-mode rainbow-delimiters evil smex))
- '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
- '(vc-annotate-background "#2B2B2B")
- '(vc-annotate-color-map
-   '((20 . "#BC8383")
-     (40 . "#CC9393")
-     (60 . "#DFAF8F")
-     (80 . "#D0BF8F")
-     (100 . "#E0CF9F")
-     (120 . "#F0DFAF")
-     (140 . "#5F7F5F")
-     (160 . "#7F9F7F")
-     (180 . "#8FB28F")
-     (200 . "#9FC59F")
-     (220 . "#AFD8AF")
-     (240 . "#BFEBBF")
-     (260 . "#93E0E3")
-     (280 . "#6CA0A3")
-     (300 . "#7CB8BB")
-     (320 . "#8CD0D3")
-     (340 . "#94BFF3")
-     (360 . "#DC8CC3")))
- '(vc-annotate-very-old-color "#DC8CC3"))
 (package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -98,6 +51,14 @@
 
 ;; set default startup screen
 (setq inhibit-startup-screen t)
+
+(use-package ample-theme)
+;;(load-theme 'ample t t)
+(load-theme 'ample-light t t)
+(enable-theme 'ample-light)
+
+;; https://github.com/WJCFerguson/emacs-faff-theme
+;;(use-package faff-theme)
 
 ;; disable toolbars and menus
 (menu-bar-mode 0)
@@ -507,3 +468,10 @@
 (defun rk/rustic-mode-hook ()
   ;; so that run C-c C-c C-r works without having to confirm
   (setq-local buffer-save-without-query t))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(faff-theme yasnippet-snippets which-key use-package tabbar-ruler smart-mode-line rustic rainbow-delimiters lsp-ui lsp-java lsp-haskell key-chord ivy helm-lsp flycheck exec-path-from-shell evil ergoemacs-mode diff-hl company command-log-mode ample-theme)))
