@@ -104,6 +104,5 @@ unset BROWSER
 
 export NODE_PATH='/usr/local/lib/node_modules'
 
-#export FINDBUGS_HOME=/Users/andreysergienko/Library/Application\ Support/IntelliJIdea2016.3/FindBugs-IDEA-1.0.0/lib
+export PATH=$PATH:~/.local/bin:~/.cabal/bin:~/anaconda/bin:/usr/local/opt/subversion/bin:/usr/local/bin
 
-export PATH=$PATH:/Users/as/.local/bin:/Users/andreysergienko/.cabal/bin:/Users/andreysergienko/anaconda/bin:/usr/local/opt/subversion/bin:/usr/local/bin:/Users/andreysergienko/.local/bin
