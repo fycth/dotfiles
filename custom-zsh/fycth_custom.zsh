@@ -278,7 +278,7 @@ function message() {
 }
 # end of todos
 
-PATH="$PATH:/Users/as/.local/bin"
+PATH="$PATH:${HOME}/.local/bin"
 
 gopaths=(
   "${HOME}/.go"
