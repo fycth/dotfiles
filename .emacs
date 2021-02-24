@@ -1,36 +1,13 @@
-;; Steps to install:
-;;   0. Install Haskell tools:
-;;       * ghc
-;;       * cabal
-;;       * stylish-haskell
-;;       * fast-tags
-;;       * hoogle
-;;   1. Copy ~/.emacs up to ;; PACKAGES ;;
-;;   2. Restart Emacs
-;;   3. Install packages (M-x list-packages) and then (i to mark for installation and "x" to install all)
-;;       * <color theme of choice>
-;;       * company
-;;       * company-ghci
-;;       * evil
-;;       * ivy
-;;       * lsp-mode
-;;       * lsp-java
-;;       * diff-hl
-;;       * exec-path-from-shell
-;;       * haskell-mode
-;;       * markdown-mode
-;;       * rainbow-delimeters
-;;       * smart-mode-line
-;;       * smex
-;;       * use-package
-;;   4. Copy the rest of .emacs file
-;;   5. Restart and enjoy!
 
 ;; disable package signature check (dirty hack to make it work)
 (setq package-check-signature nil)
 
 ;; Configure MELPA
 (require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -52,37 +29,30 @@
 ;; set default startup screen
 (setq inhibit-startup-screen t)
 
-(use-package ample-theme)
-;;(load-theme 'ample t t)
-(load-theme 'ample-light t t)
-(enable-theme 'ample-light)
-
 ;; https://github.com/WJCFerguson/emacs-faff-theme
 ;;(use-package faff-theme)
 
 ;; disable toolbars and menus
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
+(menu-bar-mode 1)
+(tool-bar-mode 1)
+(scroll-bar-mode 1)
 (column-number-mode 1)
 
 ;; disable annoying beeping and blinking
-(setq visible-bell t)
-(setq ring-bell-function 'ignore)
+;;(setq visible-bell t)
+;;(setq ring-bell-function 'ignore)
 
 ;; set font
 ;;(set-frame-font "Ubuntu Mono-14")
 
 ;; put all auto-save files in a separate directory
-(setq backup-directory-alist '(("." . "~/.emacs_saves")))
+;;(setq backup-directory-alist '(("." . "~/.emacs_saves")))
 
 ;; save desktop session on quit
-(desktop-save-mode 1)
+;;(desktop-save-mode 1)
 
 ;; automatically update buffers when files change
-(global-auto-revert-mode t)
-
-(use-package flycheck :ensure t :init (global-flycheck-mode))
+;;(global-auto-revert-mode t)
 
 ;;;;;;;;;;;;;;
 ;; PACKAGES ;;
@@ -91,12 +61,18 @@
 ;; use-package: simple package configuration
 (require 'use-package)
 
-;; set $PATH from user shell
-(use-package exec-path-from-shell)
+(use-package kaolin-themes)
+(load-theme 'kaolin-blossom t t)
+(enable-theme 'kaolin-blossom)
 
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-(exec-path-from-shell-initialize)
+;;(use-package flycheck :ensure t :init (global-flycheck-mode))
+
+;; set $PATH from user shell
+;;(use-package exec-path-from-shell)
+
+;;(when (memq window-system '(mac ns))
+;;  (exec-path-from-shell-initialize))
+;;(exec-path-from-shell-initialize)
 
 ;; ido (file navigation)
 ;;(require 'ido)
@@ -111,15 +87,18 @@
 (setq ergoemacs-keyboard-layout "us") ;; Assumes QWERTY keyboard layout
 (ergoemacs-mode 1)
 
-(use-package ivy)
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq ivy-count-format "(%d/%d) ")
-(define-key ivy-minibuffer-map (kbd "<ESC>") 'minibuffer-keyboard-quit)
-(define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
+(use-package helm)
+(helm-mode 1)
+
+;;(use-package ivy)
+;;(ivy-mode 1)
+;;(setq ivy-use-virtual-buffers t)
+;;(setq ivy-count-format "(%d/%d) ")
+;;(define-key ivy-minibuffer-map (kbd "<ESC>") 'minibuffer-keyboard-quit)
+;;(define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
 ;;(global-set-key "\C-s" 'swiper)
-(define-key ivy-minibuffer-map (kbd "<DOWN>") 'ivy-next-line)
-(define-key ivy-minibuffer-map (kbd "<up>") 'ivy-previous-line)
+;;(define-key ivy-minibuffer-map (kbd "<DOWN>") 'ivy-next-line)
+;;(define-key ivy-minibuffer-map (kbd "<up>") 'ivy-previous-line)
 
 ;; vim bindings
 (use-package evil)
@@ -145,8 +124,7 @@
 ;;)
 
 ;; answer questions with y/n (instead of yes/no)
-(fset `yes-or-no-p `y-or-n-p)
-
+;;(fset `yes-or-no-p `y-or-n-p)
 
 (use-package rainbow-delimiters)
 
@@ -172,7 +150,7 @@
 (setq sml/no-confirm-load-theme t)
 ;;(sml/setup)
 (setq
-    sml/theme 'dark
+    sml/theme 'light
     sml/shorten-directory t
     sml/shorten-modes t
 )
@@ -473,5 +451,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(faff-theme yasnippet-snippets which-key use-package tabbar-ruler smart-mode-line rustic rainbow-delimiters lsp-ui lsp-java lsp-haskell key-chord ivy helm-lsp flycheck exec-path-from-shell evil ergoemacs-mode diff-hl company command-log-mode ample-theme)))
+ '(custom-safe-themes
+   '("b9e406b52f60a61c969f203958f406fed50b5db5ac16c127b86bbddd9d8444f7" default)))
