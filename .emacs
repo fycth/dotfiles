@@ -1,4 +1,3 @@
-
 ;; disable package signature check (dirty hack to make it work)
 (setq package-check-signature nil)
 
@@ -6,10 +5,10 @@
 
 (setq package-archives
       '(("GNU ELPA"     . "https://elpa.gnu.org/packages/")
-        ("MELPA"        . "https://melpa.org/packages/"))
+	("MELPA"        . "https://melpa.org/packages/"))
       package-archive-priorities
       '(("GNU ELPA"     . 10)
-        ("MELPA" . 5)))
+	("MELPA" . 5)))
 
 (setq package-enable-at-startup nil)
 
@@ -32,9 +31,9 @@
 	       layer-evil-mode
 	       layer-yasnippet
 	       layer-company
-	       
+
 	       layer-lsp
-	       layer-markdown
+;	       layer-markdown
 	       layer-java
 	       layer-haskell
 	       layer-rust
@@ -63,11 +62,11 @@
   (interactive)
   (load-file user-init-file)
   (run-hooks 'after-init-hook
-         'emacs-startup-hook))
+	 'emacs-startup-hook))
 
 (use-package kaolin-themes)
-(load-theme 'kaolin-blossom t t)
-(enable-theme 'kaolin-blossom)
+(load-theme 'kaolin-valley-light t t)
+(enable-theme 'kaolin-valley-light)
 
 ;; clm/open-command-log-buffer opens small buffer that shows all the keystrokes
 ;; and functions used while operating Emacs
@@ -75,4 +74,3 @@
 ;;  :config
 ;;  (global-command-log-mode)
 ;;)
-

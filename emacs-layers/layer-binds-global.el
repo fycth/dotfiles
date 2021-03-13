@@ -2,9 +2,9 @@
 
 ;; UNBIND ANNOYANCES
 
-(global-unset-key (kbd "C-z"))
-(global-unset-key (kbd "C-x C-z"))
-(global-unset-key (kbd "M-m"))
+;;(global-unset-key (kbd "C-z"))
+;;(global-unset-key (kbd "C-x C-z"))
+;;(global-unset-key (kbd "M-m"))
 
 ;; TAB AUTO COMPLETION
 (setq tab-always-indent 'complete) ; used by eglot for auto-completion as well
@@ -34,24 +34,24 @@
 
 ;; COLLECTION OF REDICULOUSLY USEFUL EXTENSIONS
 
-(with-eval-after-load 'crux
-  (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
-  (global-set-key (kbd "C-o") 'crux-smart-open-line)
-  (global-set-key (kbd "C-c C-l") 'crux-duplicate-current-line-or-region)
-  (global-set-key (kbd "C-c C--") 'crux-kill-whole-line)
-  (global-set-key (kbd "C-c ;") 'crux-duplicate-and-comment-current-line-or-region))
+;;(with-eval-after-load 'crux
+;;  (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
+;;  (global-set-key (kbd "C-o") 'crux-smart-open-line)
+;;  (global-set-key (kbd "C-c C-l") 'crux-duplicate-current-line-or-region)
+;;  (global-set-key (kbd "C-c C--") 'crux-kill-whole-line)
+;;  (global-set-key (kbd "C-c ;") 'crux-duplicate-and-comment-current-line-or-region))
 
 ;; BROWSE KILL RING
 
-(with-eval-after-load 'browse-kill-ring
-  (global-set-key (kbd "M-y") 'browse-kill-ring))
+;;(with-eval-after-load 'browse-kill-ring
+;;  (global-set-key (kbd "M-y") 'browse-kill-ring))
 
 ;; REGEXP SEARCH
 
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
+;;(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+;;(global-set-key (kbd "C-M-s") 'isearch-forward)
+;;(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+;;(global-set-key (kbd "C-M-r") 'isearch-backward)
 
 ;; FIND FILES
 
@@ -68,9 +68,9 @@
 
 ;; PROJECT MGMT
 
-(with-eval-after-load 'projectile
-    (defalias 'proj 'projectile-commander)
-    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+;;(with-eval-after-load 'projectile
+;;    (defalias 'proj 'projectile-commander)
+;;    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 ;; GIT
 
@@ -107,8 +107,8 @@
 
 ;; COMPILE COMMAND
 
-(setq compile-command "make -k ")
-(global-set-key (kbd "<f5>") 'compile)
+;;(setq compile-command "make -k ")
+;;(global-set-key (kbd "<f5>") 'compile)
 
 ;; EXECUTE SCRIPT
 
