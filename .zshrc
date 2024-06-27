@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #DEFAULT_USER="fycth"
 #USER="me@"`(hostname)`
 
@@ -55,7 +62,8 @@ ZSH_CUSTOM=~/dotfiles/custom-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # zsh-syntax-highlighting should be the last plugin in the list !!!
-plugins=(iwhois rsync git zsh-completions zsh-syntax-highlighting)
+#plugins=(rsync git zsh-completions zsh-syntax-highlighting)
+plugins=(fzf ag fd zsh-interactive-cd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,6 +96,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias ls=exa
+
+alias git=/opt/homebrew/bin/git
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if [ -e /Users/as/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/as/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
@@ -95,3 +106,33 @@ if [ -e /Users/as/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/as/.nix-pro
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/as/.sdkman"
 [[ -s "/Users/as/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/as/.sdkman/bin/sdkman-init.sh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/as/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/as/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/as/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/as/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# opam configuration
+[[ ! -r /Users/as/.opam/opam-init/init.zsh ]] || source /Users/as/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+export PATH="~/.config/emacs/bin:$PATH"
+
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
