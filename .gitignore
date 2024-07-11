@@ -28,3 +28,5 @@
 custom-zsh/themes/powerlevel9k
 
 .config/nvim/plugged
+.config/nvim/lazy-lock.json
+
