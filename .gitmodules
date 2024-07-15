@@ -1,21 +1,3 @@
-[submodule ".vim/bundle/haskell-vim"]
-	path = .vim/bundle/haskell-vim
-	url = https://github.com/neovimhaskell/haskell-vim.git
-[submodule ".config/nvim/bundle/haskell-vim"]
-	path = .config/nvim/bundle/haskell-vim
-	url = https://github.com/neovimhaskell/haskell-vim.git
-[submodule ".config/nvim/bundle/nerdtree"]
-	path = .config/nvim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule ".config/nvim/bundle/bundle/ctrlp.vim"]
-	path = .config/nvim/bundle/bundle/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
-[submodule ".config/nvim/bundle/intero-neovim"]
-	path = .config/nvim/bundle/intero-neovim
-	url = https://github.com/parsonsmatt/intero-neovim.git
-[submodule ".tmux"]
-	path = .tmux
-	url = https://github.com/gpakosz/.tmux.git
 [submodule "custom-zsh/plugins/zsh-completions"]
 	path = custom-zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions

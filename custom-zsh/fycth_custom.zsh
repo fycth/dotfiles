@@ -24,7 +24,7 @@ alias top='/usr/bin/top -o cpu'
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
   alias ruby=/usr/local/opt/ruby/bin/ruby
-  alias vim=/usr/local/opt/neovim/bin/nvim
+  alias vim=/opt/homebrew/opt/neovim/bin/nvim
 #  alias vi=vim
   alias sed=gsed
   alias git=/usr/local/bin/git
@@ -36,9 +36,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # Remove all items safely, to Trash (`brew install trash`).
   alias rm='trash'
 
-  alias pip=pip3
-  alias python=python3
-
   # Case-insensitive pgrep that outputs full path.
   alias pgrep='pgrep -fli'
 
@@ -48,9 +45,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # Sniff network info.
   alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 
-  alias emacs="/usr/local/opt/emacs-mac/bin/emacs"
-  export EMACS="/usr/local/opt/emacs-mac/bin/emacs"
-  export EMACSCLIENT="/usr/local/opt/emacs-mac/bin/emacsclient"
+  alias emacs="/opt/homebrew/opt/emacs-mac/bin/emacs -nw"
+  export EMACS="/opt/homebrew/opt/emacs-mac/bin/emacs"
+  export EMACSCLIENT="/opt/homebrew/opt/emacs-mac/bin/emacsclient"
   export PATH="$PATH:${HOME}/dotfiles/bin"
 
 # Go development
@@ -295,6 +292,10 @@ if [ -f /usr/libexec/java_home ]
 then
   export JAVA_HOME=$(/usr/libexec/java_home)
 fi
+
+function vlcplay() {
+    /Applications/VLC.app/Contents/MacOS/VLC -v $1 &
+}
 
 export LEDGER_FILE=~/.hledger/main.txt
 
