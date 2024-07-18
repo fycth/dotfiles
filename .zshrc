@@ -96,7 +96,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias ls=exa
+if [[ $(uname) == "Darwin" ]]; then
+  alias ls=exa
 
 alias git=/opt/homebrew/bin/git
 
