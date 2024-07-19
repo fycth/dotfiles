@@ -19,8 +19,6 @@ function fj() {
   rg --files-with-matches --no-messages "$1" ~/journal | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
-alias octave='octave --no-gui-libs'
-
 alias top='/usr/bin/top -o cpu'
 
 # Some OS X-only stuff.
@@ -301,8 +299,8 @@ function vlcplay() {
 
 export LEDGER_FILE=~/.hledger/main.txt
 
-export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+#export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
 export FZF_DEFAULT_COMMAND='fd'
 
-source ~/.ghcup/env
+#source ~/.ghcup/env
