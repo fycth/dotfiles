@@ -96,11 +96,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [[ $(uname) == "Darwin" ]]; then
-  alias ls=exa
-  alias git=/opt/homebrew/bin/git
-fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 

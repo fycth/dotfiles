@@ -45,18 +45,20 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # Sniff network info.
   alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 
-  alias emacs="/opt/homebrew/opt/emacs-mac/bin/emacs -nw"
-  export EMACS="/opt/homebrew/opt/emacs-mac/bin/emacs"
-  export EMACSCLIENT="/opt/homebrew/opt/emacs-mac/bin/emacsclient"
+#  alias emacs="/opt/homebrew/opt/emacs-mac/bin/emacs -nw"
+#  export EMACS="/opt/homebrew/opt/emacs-mac/bin/emacs"
+#  export EMACSCLIENT="/opt/homebrew/opt/emacs-mac/bin/emacsclient"
   export PATH="$PATH:${HOME}/dotfiles/bin"
 
 # Go development
-   export GOROOT="$/usr/local/opt/go/libexec"
-   PATH="$PATH:${GOROOT}/bin"
+#   export GOROOT="$/usr/local/opt/go/libexec"
+#   PATH="$PATH:${GOROOT}/bin"
 else
   # Process grep should output full paths to binaries.
   alias pgrep='pgrep -fl'
 fi
+
+alias ls=lsd
 
 alias maven="command mvn"
 function color_maven() {
