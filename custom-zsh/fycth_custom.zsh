@@ -306,3 +306,4 @@ export LEDGER_FILE=~/.hledger/main.txt
 export FZF_DEFAULT_COMMAND='fd'
 
 #source ~/.ghcup/env
+

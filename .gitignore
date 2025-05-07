@@ -1,4 +1,7 @@
-.emacs.d
+.emacs.d/elpa
+.emacs.d/tree-sitter
+.emacs.d/auto-save-list
+
 # Numerous always-ignore extensions
 *.diff
 *.err

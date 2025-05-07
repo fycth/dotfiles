@@ -63,7 +63,7 @@ ZSH_CUSTOM=~/dotfiles/custom-zsh
 # Add wisely, as too many plugins slow down shell startup.
 # zsh-syntax-highlighting should be the last plugin in the list !!!
 #plugins=(git zsh-completions zsh-syntax-highlighting)
-plugins=(fzf ag fd zsh-interactive-cd)
+plugins=(fzf zsh-interactive-cd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -72,7 +72,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -111,3 +111,23 @@ export SDKMAN_DIR="~/.sdkman"
 
 [[ $(uname) == "Darwin" ]] || source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh > /dev/null 2> /dev/null
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+
+
+# pnpm
+export PNPM_HOME="/Users/as/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# bun completions
+[ -s "/Users/as/.bun/_bun" ] && source "/Users/as/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
