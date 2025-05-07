@@ -27,7 +27,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias vim=/opt/homebrew/opt/neovim/bin/nvim
 #  alias vi=vim
   alias sed=gsed
-  alias git=/usr/local/bin/git
+  alias git=/opt/homebrew/bin/git
 
   # Short-cuts for copy-paste.
   alias c='pbcopy'
