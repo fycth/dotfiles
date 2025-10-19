@@ -4,6 +4,7 @@
 
 ;; Load config
 (load "~/.emacs.d/config/core.el")
+(load "~/.emacs.d/config/org.el")
 (load "~/.emacs.d/config/coding.el")
 
 ;; Language support
@@ -11,4 +12,7 @@
 (load "~/.emacs.d/config/languages/ocaml.el")
 (load "~/.emacs.d/config/languages/web.el")
 
-(fido-mode t)
+;; MacOS configs
+(when (eq system-type 'darwin)
+  (load "~/.emacs.d/config/macos.el"))
+

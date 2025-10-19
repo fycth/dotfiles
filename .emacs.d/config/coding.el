@@ -1,3 +1,4 @@
+
 (use-package eglot
   :ensure t)
 
@@ -13,6 +14,16 @@
 
 ;; OCaml tree-sitter
 (add-to-list 'major-mode-remap-alist '(tuareg-mode . ocaml-ts-mode))
+
+;; C tree-sitter
+(add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
+
+;; LISP tree-sitter
+(define-derived-mode common-lisp-ts-mode prog-mode "Common Lisp (TS)"
+  "Major mode for editing Common Lisp using Tree-sitter."
+  (when (treesit-ready-p 'commonlisp)
+    (treesit-parser-create 'commonlisp)))
+(add-to-list 'auto-mode-alist '("\\.lisp\\'" . common-lisp-ts-mode))
 
 ;; Tree-sitter grammar sources
 (with-eval-after-load 'treesit
