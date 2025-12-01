@@ -33,8 +33,7 @@ make install
 - Shell: `.zshrc`, `.zshenv.sh`, `.zlogin.sh`
 - Git: `.gitconfig`, `.gitignore_global`, `.gitmessage`, `.git_template/`
 - Editors: `.emacs.d/`, `.config/nvim/`
-- Haskell: `.ghci`, `.hindent.yaml`, `.stylish-haskell.yaml`, `.stack/`
-- Other: `.gemrc`, `.mvn/`
+- Other: `.mvn/`
 
 ## Required Tools
 

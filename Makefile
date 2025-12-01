@@ -35,11 +35,6 @@ SYMLINKS := \
 	.gitignore_global \
 	.gitmessage \
 	.git_template \
-	.gemrc \
-	.ghci \
-	.hindent.yaml \
-	.stylish-haskell.yaml \
-	.stack \
 	.mvn
 
 # Directories to symlink
