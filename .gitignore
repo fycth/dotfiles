@@ -1,6 +1,17 @@
+# Emacs generated files
 .emacs.d/elpa
 .emacs.d/tree-sitter
 .emacs.d/auto-save-list
+.emacs.d/eln-cache
+.emacs.d/auto-save
+.emacs.d/backups
+.emacs.d/transient
+.emacs.d/org-roam.db
+.emacs.d/recentf
+.emacs.d/bookmarks
+.emacs.d/bookmarks~
+.emacs.d/.lsp-session-v1
+.emacs.d/.org-id-locations
 
 # Numerous always-ignore extensions
 *.diff
@@ -26,10 +37,16 @@
 *.pyc
 /tmp
 
-# Project stuff
-
+# Git-cloned dependencies (installed via make)
+custom-zsh/themes/powerlevel10k
 custom-zsh/themes/powerlevel9k
+custom-zsh/plugins/zsh-completions
+custom-zsh/plugins/zsh-syntax-highlighting
 
+# Neovim
 .config/nvim/plugged
 .config/nvim/lazy-lock.json
+
+# Claude
+.claude
 

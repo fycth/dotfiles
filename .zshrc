@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -109,14 +111,20 @@ export SDKMAN_DIR="~/.sdkman"
 # opam configuration
 [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
-[[ $(uname) == "Darwin" ]] || source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh > /dev/null 2> /dev/null
+# zsh-syntax-highlighting (loaded from dotfiles on both platforms)
+[ -f "$HOME/dotfiles/custom-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
+  source "$HOME/dotfiles/custom-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # pnpm
-export PNPM_HOME="/Users/as/Library/pnpm"
+if [[ "$OSTYPE" == darwin* ]]; then
+  export PNPM_HOME="$HOME/Library/pnpm"
+else
+  export PNPM_HOME="$HOME/.local/share/pnpm"
+fi
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -124,8 +132,14 @@ esac
 # pnpm end
 
 # bun completions
-[ -s "/Users/as/.bun/_bun" ] && source "/Users/as/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+[ -x "$HOME/.claude/local/claude" ] && alias claude="$HOME/.claude/local/claude"
+[ -f "$HOME/.deno/env" ] && . "$HOME/.deno/env"
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
