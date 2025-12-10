@@ -109,3 +109,13 @@
 
 ;; Make sure icomplete is disabled if you have it enabled elsewhere
 (icomplete-mode -1)
+
+;; Words count
+(use-package wc-mode
+  :ensure t
+  :hook ((text-mode . wc-mode)      ; Auto-enable for .txt and other text files
+         (markdown-mode . wc-mode)) ; Auto-enable for .md files
+  :config
+  ;; Optional: Change the format (e.g., "WC: 100")
+  (setq wc-modeline-format " WC:%tw"))
+
