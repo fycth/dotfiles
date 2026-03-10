@@ -12,6 +12,7 @@
 .emacs.d/bookmarks~
 .emacs.d/.lsp-session-v1
 .emacs.d/.org-id-locations
+.emacs.d/history
 
 # Numerous always-ignore extensions
 *.diff
