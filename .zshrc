@@ -139,6 +139,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 [ -x "$HOME/.claude/local/claude" ] && alias claude="$HOME/.claude/local/claude"
+command -v rlwrap &>/dev/null && alias sbcl='rlwrap sbcl'
 [ -f "$HOME/.deno/env" ] && . "$HOME/.deno/env"
 # Add JBang to environment
 alias j!=jbang
