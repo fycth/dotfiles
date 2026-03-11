@@ -74,16 +74,21 @@ done
 unset path_file
 
 # Set the list of directories that Zsh searches for programs.
-# export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 path=(
   /usr/local/{bin,sbin}
-  /usr/local/opt/ruby/bin
-  /usr/local/lib/python2.7/site-packages
-  /usr/local/share/npm/bin
   /usr/{bin,sbin}
   /{bin,sbin}
   $path
 )
+
+# Homebrew paths (macOS only)
+if [[ "$OSTYPE" == darwin* ]]; then
+  if [[ -d /opt/homebrew ]]; then
+    path=(/opt/homebrew/bin /opt/homebrew/sbin $path)
+  fi
+  [[ -d /usr/local/opt/ruby/bin ]] && path=(/usr/local/opt/ruby/bin $path)
+  [[ -d /opt/homebrew/opt/ruby/bin ]] && path=(/opt/homebrew/opt/ruby/bin $path)
+fi
 
 for path_file in /etc/paths.d/*(.N); do
   path+=($(<$path_file))
@@ -104,5 +109,8 @@ unset BROWSER
 
 export NODE_PATH='/usr/local/lib/node_modules'
 
-export PATH=$PATH:~/.local/bin:~/.cabal/bin:~/anaconda/bin:/usr/local/opt/subversion/bin:/usr/local/bin
+# Additional tool paths (only if they exist)
+export PATH="$PATH:$HOME/.local/bin"
+[[ -d "$HOME/.cabal/bin" ]] && export PATH="$PATH:$HOME/.cabal/bin"
+[[ -d "$HOME/anaconda/bin" ]] && export PATH="$PATH:$HOME/anaconda/bin"
 

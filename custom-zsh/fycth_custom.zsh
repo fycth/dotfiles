@@ -10,6 +10,22 @@ export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_so=$'\e[01;33m'
 
+# OS detection
+case "$OSTYPE" in
+  darwin*)  OS_TYPE="macos" ;;
+  linux*)   OS_TYPE="linux" ;;
+  freebsd*|openbsd*|netbsd*) OS_TYPE="bsd" ;;
+  *)        OS_TYPE="unknown" ;;
+esac
+
+# Homebrew prefix (macOS only)
+if [[ "$OS_TYPE" == "macos" ]]; then
+  if [[ -d /opt/homebrew ]]; then
+    BREW_PREFIX="/opt/homebrew"
+  elif [[ -d /usr/local/Cellar ]]; then
+    BREW_PREFIX="/usr/local"
+  fi
+fi
 
 # fj i [F]ind in [Journal]
 # it searches for a term in journal files
@@ -19,22 +35,25 @@ function fj() {
   rg --files-with-matches --no-messages "$1" ~/journal | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
-alias top='/usr/bin/top -o cpu'
+# top alias differs per OS
+case "$OS_TYPE" in
+  macos) alias top='/usr/bin/top -o cpu' ;;
+  linux) alias top='top -o %CPU' ;;
+esac
 
-# Some OS X-only stuff.
-if [[ "$OSTYPE" == darwin* ]]; then
-  alias ruby=/usr/local/opt/ruby/bin/ruby
-  alias vim=/opt/homebrew/opt/neovim/bin/nvim
-#  alias vi=vim
-  alias sed=gsed
-  alias git=/opt/homebrew/bin/git
+# Use nvim if available (no hard-coded paths)
+(( $+commands[nvim] )) && alias vim=nvim
+
+if [[ "$OS_TYPE" == "macos" ]]; then
+  # Use GNU sed on macOS (brew install coreutils gnu-sed)
+  (( $+commands[gsed] )) && alias sed=gsed
 
   # Short-cuts for copy-paste.
   alias c='pbcopy'
   alias p='pbpaste'
 
   # Remove all items safely, to Trash (`brew install trash`).
-  alias rm='trash'
+  (( $+commands[trash] )) && alias rm='trash'
 
   # Case-insensitive pgrep that outputs full path.
   alias pgrep='pgrep -fli'
@@ -45,16 +64,20 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # Sniff network info.
   alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 
-#  alias emacs="/opt/homebrew/opt/emacs-mac/bin/emacs -nw"
-#  export EMACS="/opt/homebrew/opt/emacs-mac/bin/emacs"
-#  export EMACSCLIENT="/opt/homebrew/opt/emacs-mac/bin/emacsclient"
   export PATH="$PATH:${HOME}/dotfiles/bin"
+elif [[ "$OS_TYPE" == "linux" ]]; then
+  # Clipboard via xclip
+  if (( $+commands[xclip] )); then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+    alias c='xclip -selection clipboard'
+    alias p='xclip -selection clipboard -o'
+  fi
 
-# Go development
-#   export GOROOT="$/usr/local/opt/go/libexec"
-#   PATH="$PATH:${GOROOT}/bin"
-else
   # Process grep should output full paths to binaries.
+  alias pgrep='pgrep -fl'
+else
+  # BSD and others
   alias pgrep='pgrep -fl'
 fi
 
@@ -89,18 +112,19 @@ alias mvn=color_maven
 # Pretty print json
 alias json='python -m json.tool'
 
-# Show man page in Preview.app.
-# $ manp cd
-function manp {
-  local page
-  if (( $# > 0 )); then
-    for page in "$@"; do
-      man -t "$page" | open -f -a Preview
-    done
-  else
-    print 'What manual page do you want?' >&2
-  fi
-}
+# Show man page in Preview.app (macOS only).
+if [[ "$OS_TYPE" == "macos" ]]; then
+  function manp {
+    local page
+    if (( $# > 0 )); then
+      for page in "$@"; do
+        man -t "$page" | open -f -a Preview
+      done
+    else
+      print 'What manual page do you want?' >&2
+    fi
+  }
+fi
 
 function kp {
 # mnemonic: [K]ill [P]rocess
@@ -290,14 +314,22 @@ done
 export GOPATH=${GOPATH:1}
 export PATH
 
-if [ -f /usr/libexec/java_home ]
-then
+if [[ "$OS_TYPE" == "macos" ]] && [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME=$(/usr/libexec/java_home)
+elif (( $+commands[java] )); then
+  # Linux/BSD: derive JAVA_HOME from java binary path
+  export JAVA_HOME="${${:-$(readlink -f $(command -v java))}:h:h}"
 fi
 
-function vlcplay() {
+if [[ "$OS_TYPE" == "macos" ]]; then
+  function vlcplay() {
     /Applications/VLC.app/Contents/MacOS/VLC -v $1 &
-}
+  }
+elif (( $+commands[vlc] )); then
+  function vlcplay() {
+    vlc -v $1 &
+  }
+fi
 
 export LEDGER_FILE=~/.hledger/main.txt
 
