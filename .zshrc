@@ -1,3 +1,5 @@
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+
 # Add deno completions to search path
 if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -144,3 +146,9 @@ command -v rlwrap &>/dev/null && alias sbcl='rlwrap sbcl'
 # Add JBang to environment
 alias j!=jbang
 export PATH="$HOME/.jbang/bin:$PATH"
+
+# Run fortune if it exists
+if command -v fortune >/dev/null 2>&1; then
+    fortune
+fi
+
