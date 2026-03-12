@@ -4,7 +4,6 @@
 
 ;; Load config
 (load "~/.emacs.d/config/core.el")
-(load "~/.emacs.d/config/org.el")
 (load "~/.emacs.d/config/coding.el")
 
 ;; Language support
