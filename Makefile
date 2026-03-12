@@ -258,6 +258,11 @@ check-tools:
 	else \
 		echo -e "  $(YELLOW)○$(NC) nvim (optional - neovim)"; \
 	fi
+	@if command -v fortune >/dev/null 2>&1; then \
+		echo -e "  $(GREEN)✓$(NC) fortune"; \
+	else \
+		echo -e "  $(YELLOW)○$(NC) fortune (optional - fortune)"; \
+	fi
 	@if command -v emacs >/dev/null 2>&1; then \
 		echo -e "  $(GREEN)✓$(NC) emacs"; \
 	else \
