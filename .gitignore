@@ -13,6 +13,7 @@
 .emacs.d/.lsp-session-v1
 .emacs.d/.org-id-locations
 .emacs.d/history
+.emacs.d/custom.el
 
 # Numerous always-ignore extensions
 *.diff

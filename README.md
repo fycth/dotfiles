@@ -51,6 +51,7 @@ Run `make check` to see what's installed. Optional but recommended:
 - `nvim` - neovim
 - `emacs`
 - `diff-so-fancy` - better git diffs
+- `ag` - the silver searcher
 
 macOS-specific:
 - `gsed` - GNU sed
@@ -62,3 +63,11 @@ The Makefile is re-entrant. Running `make install` multiple times is safe:
 - Existing symlinks are skipped
 - Already cloned repos are skipped
 - Existing non-symlinked files are reported (won't overwrite)
+
+## Recommended software
+
+- The Universal Document Viewer: [Okuklar](https://okular.kde.org/)
+- Music Player: [DeaDBeeF](https://github.com/DeaDBeeF-Player/deadbeef)
+- Terminal: [kitty](https://sw.kovidgoyal.net/kitty/)
+- Font: [Maple](https://font.subf.dev/en/)
+
