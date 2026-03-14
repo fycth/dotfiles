@@ -41,7 +41,7 @@
 
 ;; Ligatures (Emacs 29+)
 (defvar my/ligature-fonts
-  '("Fira Code" "JetBrains Mono" "Iosevka" "Hasklig" "Cascadia Code" "Recursive"))
+  '("Maple Mono" "Fira Code" "JetBrains Mono" "Iosevka" "Hasklig" "Cascadia Code" "Recursive"))
 
 (defun my/enable-all-ligatures ()
   (setq-local composition-function-table (make-char-table nil))

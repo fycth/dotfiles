@@ -40,7 +40,8 @@ SYMLINKS := \
 # Directories to symlink
 DIR_SYMLINKS := \
 	.emacs.d \
-	.config/nvim
+	.config/nvim \
+	.config/kitty
 
 .PHONY: all install check clean update help deps symlinks
 
@@ -236,42 +237,57 @@ check-tools:
 	@if command -v fzf >/dev/null 2>&1; then \
 		echo -e "  $(GREEN)✓$(NC) fzf"; \
 	else \
-		echo -e "  $(YELLOW)○$(NC) fzf (optional - fuzzy finder)"; \
+		echo -e "  $(YELLOW)○$(NC) fzf (optional - fuzzy finder: https://github.com/junegunn/fzf)"; \
 	fi
 	@if command -v fd >/dev/null 2>&1; then \
 		echo -e "  $(GREEN)✓$(NC) fd"; \
 	else \
-		echo -e "  $(YELLOW)○$(NC) fd (optional - fast find)"; \
+		echo -e "  $(YELLOW)○$(NC) fd (optional - fast find: https://github.com/sharkdp/fd)"; \
 	fi
 	@if command -v rg >/dev/null 2>&1; then \
 		echo -e "  $(GREEN)✓$(NC) rg (ripgrep)"; \
 	else \
-		echo -e "  $(YELLOW)○$(NC) rg (optional - ripgrep)"; \
+		echo -e "  $(YELLOW)○$(NC) rg (optional - ripgrep: https://github.com/BurntSushi/ripgrep)"; \
 	fi
 	@if command -v lsd >/dev/null 2>&1; then \
 		echo -e "  $(GREEN)✓$(NC) lsd"; \
 	else \
-		echo -e "  $(YELLOW)○$(NC) lsd (optional - ls replacement)"; \
+		echo -e "  $(YELLOW)○$(NC) lsd (optional - ls replacement: https://github.com/lsd-rs/lsd)"; \
 	fi
 	@if command -v nvim >/dev/null 2>&1; then \
 		echo -e "  $(GREEN)✓$(NC) nvim"; \
 	else \
 		echo -e "  $(YELLOW)○$(NC) nvim (optional - neovim)"; \
 	fi
+	@if command -v ag >/dev/null 2>&1; then \
+		echo -e "  $(GREEN)✓$(NC) ag"; \
+	else \
+		echo -e "  $(YELLOW)○$(NC) ag (optional - the silver searcher: https://github.com/ggreer/the_silver_searcher)"; \
+	fi
+	@if command -v kitty >/dev/null 2>&1; then \
+		echo -e "  $(GREEN)✓$(NC) kitty"; \
+	else \
+		echo -e "  $(YELLOW)○$(NC) kitty (optional - kitty terminal: https://github.com/kovidgoyal/kitty)"; \
+	fi
 	@if command -v fortune >/dev/null 2>&1; then \
 		echo -e "  $(GREEN)✓$(NC) fortune"; \
 	else \
-		echo -e "  $(YELLOW)○$(NC) fortune (optional - fortune)"; \
+		echo -e "  $(YELLOW)○$(NC) fortune (optional)"; \
 	fi
 	@if command -v emacs >/dev/null 2>&1; then \
 		echo -e "  $(GREEN)✓$(NC) emacs"; \
 	else \
 		echo -e "  $(YELLOW)○$(NC) emacs (optional)"; \
 	fi
+	@if command -v lazygit >/dev/null 2>&1; then \
+		echo -e "  $(GREEN)✓$(NC) lazygit"; \
+	else \
+		echo -e "  $(YELLOW)○$(NC) lazygit (optional: https://github.com/jesseduffield/lazygit)"; \
+	fi
 	@if command -v diff-so-fancy >/dev/null 2>&1; then \
 		echo -e "  $(GREEN)✓$(NC) diff-so-fancy"; \
 	else \
-		echo -e "  $(YELLOW)○$(NC) diff-so-fancy (optional - git diff)"; \
+		echo -e "  $(YELLOW)○$(NC) diff-so-fancy (optional - git diff: https://github.com/so-fancy/diff-so-fancy)"; \
 	fi
 	@# macOS-specific
 	@if [ "$(OS)" = "Darwin" ]; then \
