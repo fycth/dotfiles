@@ -5,6 +5,7 @@
 ;; Load config
 (load "~/.emacs.d/config/core.el")
 (load "~/.emacs.d/config/coding.el")
+(load "~/.emacs.d/config/projects.el")
 
 ;; Language support
 (load "~/.emacs.d/config/languages/lisp.el")
