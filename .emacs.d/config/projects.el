@@ -4,7 +4,7 @@
 
 (require 'project)
 
-(defvar my-projects-dir (expand-file-name "projects" user-emacs-directory))
+(defvar my-projects-dir (expand-file-name "my-projects" user-emacs-directory))
 (defvar my-projects-sessions-dir (expand-file-name "sessions" my-projects-dir))
 (defvar my-projects-known-file (expand-file-name "known-projects.el" my-projects-dir))
 (defvar my-projects--current nil "Root of the currently active project.")

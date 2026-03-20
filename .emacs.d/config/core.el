@@ -37,25 +37,31 @@
     (add-to-list 'treesit-language-source-alist entry)))
 
 ;; Font
-(set-face-attribute 'default nil :family "Fira Code" :height 160)
+(set-face-attribute 'default nil
+                    :family (if (find-font (font-spec :family "Maple Mono"))
+                                "Maple Mono"
+                              "Fira Code")
+                    :height 160)
 
-;; Ligatures (Emacs 29+)
-(defvar my/ligature-fonts
-  '("Maple Mono" "Fira Code" "JetBrains Mono" "Iosevka" "Hasklig" "Cascadia Code" "Recursive"))
-
-(defun my/enable-all-ligatures ()
-  (setq-local composition-function-table (make-char-table nil))
-  (set-char-table-range composition-function-table t
-                        #'(lambda (start end _match)
-                            (compose-region start end))))
-
-(defun my/setup-ligatures-if-supported ()
-  (let ((font (face-attribute 'default :family)))
-    (when (and (member font my/ligature-fonts)
-               (derived-mode-p 'prog-mode))
-      (my/enable-all-ligatures))))
-
-(add-hook 'prog-mode-hook #'my/setup-ligatures-if-supported)
+;; Ligatures via ligature.el (Emacs 28+)
+(use-package ligature
+  :config
+  (ligature-set-ligatures
+   'prog-mode
+   '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\"
+     "{-" "[]" "::" ":::" ":=" "!!" "!=" "!==" "-}"
+     "--" "---" "-->" "->" "->>" "-<" "-<<" "-~"
+     "#{" "#[" "##" "###" "####" "#(" "#?" "#_" "#_("
+     ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*"
+     "/**" "/=" "/==" "/>" "//" "///" "&&" "||" "||="
+     "|=" "|>" "^=" "$>" "++" "+++" "+>" "=:=" "=="
+     "===" "==>" "=>" "=>>" "<=" "=<<" "=/=" ">-" ">="
+     ">=>" ">>" ">>-" ">>=" ">>>" "<*" "<*>" "<|" "<|>"
+     "<$" "<$>" "<!--" "<-" "<--" "<->" "<+" "<+>"
+     "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+     "<~" "<~~" "</" "</>" "~@" "~-" "~=" "~>" "~~"
+     "~~>" "%%"))
+  (global-ligature-mode t))
 
 ;; Theme
 (setq custom-safe-themes t)
