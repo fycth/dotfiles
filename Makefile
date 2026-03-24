@@ -35,7 +35,8 @@ SYMLINKS := \
 	.gitignore_global \
 	.gitmessage \
 	.git_template \
-	.mvn
+	.mvn \
+	.sbclrc
 
 # Directories to symlink
 DIR_SYMLINKS := \
@@ -288,6 +289,11 @@ check-tools:
 		echo -e "  $(GREEN)✓$(NC) diff-so-fancy"; \
 	else \
 		echo -e "  $(YELLOW)○$(NC) diff-so-fancy (optional - git diff: https://github.com/so-fancy/diff-so-fancy)"; \
+	fi
+	@if [ -f $(HOME_DIR)/quicklisp/slime-helper.el ]; then \
+		echo -e "  $(GREEN)✓$(NC) quicklisp"; \
+	else \
+		echo -e "  $(YELLOW)○$(NC) quicklisp (optional)"; \
 	fi
 	@# macOS-specific
 	@if [ "$(OS)" = "Darwin" ]; then \
