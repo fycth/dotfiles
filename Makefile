@@ -11,6 +11,7 @@ RED := \033[0;31m
 GREEN := \033[0;32m
 YELLOW := \033[0;33m
 BLUE := \033[0;34m
+GRAY := \033[0;90m
 NC := \033[0m # No Color
 
 # Git repositories to clone
@@ -26,23 +27,23 @@ ZSH_COMPLETIONS_DIR := $(DOTFILES)/custom-zsh/plugins/zsh-completions
 ZSH_SYNTAX_REPO := https://github.com/zsh-users/zsh-syntax-highlighting.git
 ZSH_SYNTAX_DIR := $(DOTFILES)/custom-zsh/plugins/zsh-syntax-highlighting
 
-# Files to symlink (source -> target)
+# Files to symlink (format: file:dependency, dependency checked via command -v)
 SYMLINKS := \
-	.zshrc \
-	.zshenv.sh \
-	.zlogin.sh \
-	.gitconfig \
-	.gitignore_global \
-	.gitmessage \
-	.git_template \
-	.mvn \
-	.sbclrc
+	.zshrc:zsh \
+	.zshenv.sh:zsh \
+	.zlogin.sh:zsh \
+	.gitconfig:git \
+	.gitignore_global:git \
+	.gitmessage:git \
+	.git_template:git \
+	.mvn:mvn \
+	.sbclrc:sbcl
 
-# Directories to symlink
+# Directories to symlink (format: dir:dependency)
 DIR_SYMLINKS := \
-	.emacs.d \
-	.config/nvim \
-	.config/kitty
+	.emacs.d:emacs \
+	.config/nvim:nvim \
+	.config/kitty:kitty
 
 .PHONY: all install check clean update help deps symlinks
 
@@ -92,7 +93,14 @@ $(ZSH_SYNTAX_DIR):
 symlinks:
 	@echo -e "$(BLUE)Creating symlinks...$(NC)"
 	@# Regular file symlinks
-	@for file in $(SYMLINKS); do \
+	@for entry in $(SYMLINKS); do \
+		file="$${entry%%:*}"; \
+		dep="$${entry#*:}"; \
+		if [ "$$file" = "$$dep" ]; then dep=""; fi; \
+		if [ -n "$$dep" ] && ! command -v "$$dep" >/dev/null 2>&1; then \
+			echo -e "  $(GRAY)○ $$file ($$dep not installed)$(NC)"; \
+			continue; \
+		fi; \
 		src="$(DOTFILES)/$$file"; \
 		dst="$(HOME_DIR)/$$file"; \
 		if [ -e "$$src" ]; then \
@@ -107,7 +115,14 @@ symlinks:
 		fi \
 	done
 	@# Directory symlinks
-	@for dir in $(DIR_SYMLINKS); do \
+	@for entry in $(DIR_SYMLINKS); do \
+		dir="$${entry%%:*}"; \
+		dep="$${entry#*:}"; \
+		if [ "$$dir" = "$$dep" ]; then dep=""; fi; \
+		if [ -n "$$dep" ] && ! command -v "$$dep" >/dev/null 2>&1; then \
+			echo -e "  $(GRAY)○ $$dir ($$dep not installed)$(NC)"; \
+			continue; \
+		fi; \
 		src="$(DOTFILES)/$$dir"; \
 		dst="$(HOME_DIR)/$$dir"; \
 		parent_dir=$$(dirname "$$dst"); \
@@ -159,14 +174,16 @@ update:
 # Remove symlinks
 clean:
 	@echo -e "$(BLUE)Removing symlinks...$(NC)"
-	@for file in $(SYMLINKS); do \
+	@for entry in $(SYMLINKS); do \
+		file="$${entry%%:*}"; \
 		dst="$(HOME_DIR)/$$file"; \
 		if [ -L "$$dst" ]; then \
 			rm "$$dst"; \
 			echo -e "  $(GREEN)✓ Removed $$file$(NC)"; \
 		fi \
 	done
-	@for dir in $(DIR_SYMLINKS); do \
+	@for entry in $(DIR_SYMLINKS); do \
+		dir="$${entry%%:*}"; \
 		dst="$(HOME_DIR)/$$dir"; \
 		if [ -L "$$dst" ]; then \
 			rm "$$dst"; \
@@ -207,7 +224,14 @@ check:
 	fi
 	@echo ""
 	@echo -e "$(BLUE)Symlinks:$(NC)"
-	@for file in $(SYMLINKS) $(DIR_SYMLINKS); do \
+	@for entry in $(SYMLINKS) $(DIR_SYMLINKS); do \
+		file="$${entry%%:*}"; \
+		dep="$${entry#*:}"; \
+		if [ "$$file" = "$$dep" ]; then dep=""; fi; \
+		if [ -n "$$dep" ] && ! command -v "$$dep" >/dev/null 2>&1; then \
+			echo -e "  $(GRAY)○$(NC) $(GRAY)$$file ($$dep not installed)$(NC)"; \
+			continue; \
+		fi; \
 		dst="$(HOME_DIR)/$$file"; \
 		if [ -L "$$dst" ]; then \
 			echo -e "  $(GREEN)✓$(NC) $$file"; \
