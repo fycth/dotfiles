@@ -301,17 +301,21 @@ function message() {
 
 PATH="$PATH:${HOME}/.local/bin"
 
-gopaths=(
-  "${HOME}/.go"
-)
-for ((i = 1; i <= ${#gopaths[@]}; i++))
-do
-  ITEM=${gopaths[$i]}
-  GOPATH="$GOPATH:${ITEM}"
-  PATH="$PATH:${ITEM}/bin"
-  test -d "${ITEM}" || mkdir "${ITEM}"
-done
-export GOPATH=${GOPATH:1}
+# GOPATH (OS-aware): clear any stale/inherited value first, then prefer
+# `go env GOPATH`, falling back to the conventional default.
+unset GOPATH
+if (( $+commands[go] )); then
+  GOPATH="$(go env GOPATH 2>/dev/null)"
+fi
+if [[ -z "$GOPATH" || "$GOPATH" != /* ]]; then
+  case "$OS_TYPE" in
+    macos|linux|bsd|*) GOPATH="${HOME}/go" ;;
+  esac
+fi
+export GOPATH
+
+[[ -d "$GOPATH" ]] || mkdir -p "$GOPATH"
+PATH="$PATH:${GOPATH}/bin"
 export PATH
 
 if [[ "$OS_TYPE" == "macos" ]] && [ -f /usr/libexec/java_home ]; then
@@ -333,8 +337,5 @@ fi
 
 export LEDGER_FILE=~/.hledger/main.txt
 
-#export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
-
 export FZF_DEFAULT_COMMAND='fd'
 
-#source ~/.ghcup/env

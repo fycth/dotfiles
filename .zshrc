@@ -9,9 +9,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-#DEFAULT_USER="fycth"
-#USER="me@"`(hostname)`
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -73,8 +70,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
@@ -87,9 +82,6 @@ export LANG=en_US.UTF-8
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -133,13 +125,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 [ -x "$HOME/.claude/local/claude" ] && alias claude="$HOME/.claude/local/claude"
 command -v rlwrap &>/dev/null && alias sbcl='rlwrap sbcl'
 [ -f "$HOME/.deno/env" ] && . "$HOME/.deno/env"
@@ -147,8 +132,12 @@ command -v rlwrap &>/dev/null && alias sbcl='rlwrap sbcl'
 alias j!=jbang
 export PATH="$HOME/.jbang/bin:$PATH"
 
+# opencode
+export PATH=/Users/as/.opencode/bin:$PATH
+
 # Run fortune if it exists
 if command -v fortune >/dev/null 2>&1; then
     fortune
 fi
+
 
